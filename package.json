@@ -1,0 +1,22 @@
+{
+  "name": "task1",
+  "version": "1.0.0",
+  "description": "reactJs application",
+  "main": "index.js",
+  "scripts": {
+    "server": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xelsoid/ReactJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xelsoid/ReactJS/issues"
+  },
+  "homepage": "https://github.com/Xelsoid/ReactJS#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

@@ -1,3 +1,5 @@
 # ReactJS
-1) npm install 
-2) server - start express server 
+ npm install 
+ start:dev - development env
+ build - compile artifact
+ test - run test

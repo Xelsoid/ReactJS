@@ -4,7 +4,7 @@
   "description": "reactJs application",
   "scripts": {
     "build-dev": "set NODE_ENV=development&& node server.js",
-    "build-prod": "set NODE_ENV=production&& webpack && node server.js",
+    "build-prod": "set NODE_ENV=production&& webpack",
     "test": "node test.js"
   },
   "repository": {

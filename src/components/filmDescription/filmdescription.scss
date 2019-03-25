@@ -1,0 +1,29 @@
+.film-description {
+  padding: 10px 0;
+  background-color: #fdc459;
+
+  &__image-wrapper {
+    float: left;
+    margin-right: 40px;
+  }
+
+  &__info-wrapper {
+
+  }
+
+  &__header {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+
+  &__useful-info {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  &__narration {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+}

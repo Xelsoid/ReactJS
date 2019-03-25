@@ -1,6 +1,6 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = () => {
   return {
@@ -13,14 +13,24 @@ module.exports = () => {
         exclude: /node_modules/
       },{
         test:/\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader'
+        ]
+      },{
+        test:/\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader'
+        ]
       }]
     },
     plugins: [
-      new ExtractTextPlugin({filename: 'style.css'}),
+      new MiniCssExtractPlugin({
+        filename: 'style.css',
+        chunkFilename: "style.css"
+      }),
       new HtmlWebpackPlugin({
         title: 'React application',
         template: './index.html'

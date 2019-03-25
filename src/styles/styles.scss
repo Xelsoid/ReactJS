@@ -1,0 +1,13 @@
+body {
+  font-family: "Source Sans Pro", sans-serif;;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.display-block {
+  display: block;
+}

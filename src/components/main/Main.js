@@ -1,21 +1,26 @@
 import React from 'react';
 
-import SortingOptions from '../sortingOptions/sortingOptions.js';
+import SortResults from '../sortResults/SortResults.js';
 import FilmsGallery from '../filmsGallery/FilmsGallery.js';
 import FilmDescription from "../filmDescription/filmDescription.js";
 
-let displayFilmDescription = true;
+let isDisplayFilmDescription = true;
 
 export default class Main extends React.Component {
+  constructor(props){
+    super(props);
+    this.props = props;
+  }
   render() {
     return(
       <>
-        {displayFilmDescription ?
-          <FilmDescription/> :
-          <></>
+        {
+          isDisplayFilmDescription
+              ? <FilmDescription film={this.props.requestedFilms.data[1]} />
+              : null
         }
-        <SortingOptions/>
-        <FilmsGallery/>
+        <SortResults amountOfResults={this.props.requestedFilms.data.length}/>
+        <FilmsGallery requestedFilms={this.props.requestedFilms}/>
       </>
     )
   }

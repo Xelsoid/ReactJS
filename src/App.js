@@ -9,12 +9,14 @@ import Footer from './components/footer/Footer.js';
 import './styles/reset.css';
 import './styles/styles.scss';
 
+import DATA from './mockedData/MOCKED_DATA.js';
+
 class App extends React.Component {
   render() {
     return (
       <ErrorBoundary>
         <Header/>
-        <Main/>
+        <Main requestedFilms={DATA}/>
         <Footer/>
       </ErrorBoundary>
     )

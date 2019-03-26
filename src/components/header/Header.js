@@ -5,9 +5,6 @@ import Logo from '../logo/Logo.js';
 import Search from '../search/Search.js';
 import Button from "../button/Button.js";
 
-const searchProps = {
-  placeHolder: 'Search films',
-};
 const titleBtn = {
   id: 'btnTitle',
   title: 'Title',
@@ -30,7 +27,7 @@ const searchBtn = {
 const Header = () => (
   <header className="header">
     <Logo/>
-    <Search searchProps={searchProps}/>
+    <Search/>
     <Button btnProps={searchBtn}/>
     <div>
       <span>Searched by:</span>

@@ -2,9 +2,15 @@
   padding: 10px 0;
   background-color: #fdc459;
 
-  &__image-wrapper {
-    float: left;
-    margin-right: 40px;
+  &__image {
+    max-width: 300px;
+    min-width: 250px;
+
+    &-wrapper {
+      float: left;
+      margin-right: 40px;
+      margin-left: 20px;
+    }
   }
 
   &__info-wrapper {

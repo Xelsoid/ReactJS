@@ -1,29 +1,15 @@
 import React from 'react';
 
-import './filmsgallery.scss';
-import FilmCard from './FilmsGalleryCard';
+import './filmsGallery.scss';
+import FilmsGalleryCard from './FilmsGalleryCard';
 
-const FilmsGallery = () => (
-    <div className='film-gallery'>
-      <div className='film-gallery--column'>
-        <FilmCard/>
+const FilmsGallery = ({requestedFilms}) => <div className="film-gallery">
+  {requestedFilms.data.map((film) => (
+      <div className="film-gallery--column" key={film.id}>
+        <FilmsGalleryCard film={film}/>
       </div>
-      <div className='film-gallery--column'>
-        <FilmCard/>
-      </div>
-      <div className='film-gallery--column'>
-        <FilmCard/>
-      </div>
-      <div className='film-gallery--column'>
-        <FilmCard/>
-      </div>
-      <div className='film-gallery--column'>
-        <FilmCard/>
-      </div>
-      <div className='film-gallery--column'>
-        <FilmCard/>
-      </div>
-    </div>
-);
+    ))
+  }
+</div>;
 
 export default FilmsGallery;

@@ -1,14 +1,8 @@
 import React from 'react';
 
 import Button from '../button/Button.js';
-import './sortingoptions.scss';
+import './sortResults.scss';
 
-const sortByBtn = {
-  id: 'btnSortBy',
-  title: 'Sort by',
-  disabled: false,
-  className: 'btn btn--primary'
-};
 const releaseDateBtn = {
   id: 'btnreleaseDate',
   title: 'Release Date',
@@ -22,17 +16,17 @@ const ratingBtn = {
   className: 'btn btn--primary'
 };
 
-const SortingOptions = () => (
-    <div className='main-sorting'>
-      <div className='main-sorting__column'>
-        <span>7 movies found</span>
+const SortResults = ({amountOfResults}) => (
+    <div className="main-sorting">
+      <div className="main-sorting__column">
+        <span>{amountOfResults} movies found</span>
       </div>
-      <div className='main-sorting__column'>
-        <Button btnProps={sortByBtn}/>
+      <div className="main-sorting__column">
+        <span>Sort by:</span>
         <Button btnProps={releaseDateBtn}/>
         <Button btnProps={ratingBtn}/>
       </div>
     </div>
 );
 
-export default SortingOptions;
+export default SortResults;

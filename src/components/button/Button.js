@@ -3,27 +3,27 @@ import React from 'react';
 import './button.scss';
 
 export default class Button extends React.Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      clickedBefore: 'notclicked'
+      clickedBefore: 'notclicked',
     };
   }
 
   changeState = () => {
-    this.setState({clickedBefore: "clicked"});
+    this.setState({ clickedBefore: 'clicked' });
   };
 
   render() {
-    return(
+    return (
       <button
-        className={this.props.btnProps.className}
-        type="button"
-        disabled={this.props.btnProps.disabled}
-        onClick={this.changeState}
+        className = {this.props.btnProps.className}
+        disabled = {this.props.btnProps.disabled}
+        onClick = {this.changeState}
+        type = "button"
       >
         {this.props.btnProps.title}
       </button>
-    )
+    );
   }
 }

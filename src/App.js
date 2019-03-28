@@ -11,16 +11,12 @@ import './styles/styles.scss';
 
 import DATA from './mockedData/MOCKED_DATA';
 
-class App extends React.Component {
-  render() {
-    return (
-      <ErrorBoundary>
-        <Header />
-        <Main requestedFilms={DATA} />
-        <Footer />
-      </ErrorBoundary>
-    );
-  }
-}
+const App = () => (
+  <ErrorBoundary>
+    <Header />
+    <Main requestedFilms={DATA} />
+    <Footer />
+  </ErrorBoundary>
+);
 
 ReactDOM.render(<App />, document.getElementById('rootContainer'));

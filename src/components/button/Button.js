@@ -15,14 +15,18 @@ export default class Button extends React.Component {
   };
 
   render() {
+    const { btnClass, disabled, title } = this.props;
+    let { clickedBefore } = this.state;
     return (
       <button
-        className={this.props.btnProps.className}
-        disabled={this.props.btnProps.disabled}
+        className={`btn ${btnClass}`}
+        disabled={disabled}
         onClick={this.changeState}
         type="button"
       >
-        {this.props.btnProps.title}
+        {title}
+        {" "}
+        {clickedBefore}
       </button>
     );
   }

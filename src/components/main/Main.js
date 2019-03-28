@@ -6,23 +6,12 @@ import FilmDescription from '../filmDescription/FilmDescription';
 
 const isDisplayFilmDescription = true;
 
-export default class Main extends React.Component {
-  constructor(props) {
-    super(props);
-    this.props = props;
-  }
+const Main = ({ requestedFilms }) => (
+  <>
+    {isDisplayFilmDescription ? <FilmDescription film={requestedFilms.data[1]} /> : null}
+    <SortResults amountOfResults={requestedFilms.data.length} />
+    <FilmsGallery requestedFilms={requestedFilms} />
+  </>
+);
 
-  render() {
-    return (
-      <>
-        {
-          isDisplayFilmDescription
-            ? <FilmDescription film={this.props.requestedFilms.data[1]} />
-            : null
-        }
-        <SortResults amountOfResults={this.props.requestedFilms.data.length} />
-        <FilmsGallery requestedFilms={this.props.requestedFilms} />
-      </>
-    );
-  }
-}
+export default Main;

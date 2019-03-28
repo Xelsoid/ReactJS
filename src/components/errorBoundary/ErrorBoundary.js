@@ -9,16 +9,18 @@ export default class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    console.log(`${error} : ${errorInfo}`);
+    console.log(`${error} : ${errorInfo}`); // eslint-disable-line no-console
     this.setState({ hasError: true });
   }
 
   render() {
-    if (this.state.hasError) {
+    const { children } = this.props;
+    const { hasError } = this.state;
+    if (hasError) {
       return (
         <div>Все поломалось! Но мы починим! Но это не точно!</div>
       );
     }
-    return this.props.children;
+    return children;
   }
 }

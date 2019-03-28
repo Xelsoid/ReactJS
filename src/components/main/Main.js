@@ -17,11 +17,11 @@ export default class Main extends React.Component {
       <>
         {
           isDisplayFilmDescription
-            ? <FilmDescription film = {this.props.requestedFilms.data[1]} />
+            ? <FilmDescription film={this.props.requestedFilms.data[1]} />
             : null
         }
-        <SortResults amountOfResults = {this.props.requestedFilms.data.length} />
-        <FilmsGallery requestedFilms = {this.props.requestedFilms} />
+        <SortResults amountOfResults={this.props.requestedFilms.data.length} />
+        <FilmsGallery requestedFilms={this.props.requestedFilms} />
       </>
     );
   }

@@ -16,7 +16,7 @@ class App extends React.Component {
     return (
       <ErrorBoundary>
         <Header />
-        <Main requestedFilms = {DATA} />
+        <Main requestedFilms={DATA} />
         <Footer />
       </ErrorBoundary>
     );

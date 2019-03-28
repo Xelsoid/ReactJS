@@ -25,14 +25,14 @@ const searchBtn = {
 };
 
 const Header = () => (
-  <header className = "header">
+  <header className="header">
     <Logo />
     <Search />
-    <Button btnProps = {searchBtn} />
+    <Button btnProps={searchBtn} />
     <div>
       <span>Searched by:</span>
-      <Button btnProps = {titleBtn} />
-      <Button btnProps = {genreBtn} />
+      <Button btnProps={titleBtn} />
+      <Button btnProps={genreBtn} />
     </div>
   </header>
 );

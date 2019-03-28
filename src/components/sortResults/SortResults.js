@@ -17,18 +17,18 @@ const ratingBtn = {
 };
 
 const SortResults = ({ amountOfResults }) => (
-  <div className = "main-sorting">
-    <div className = "main-sorting__column">
+  <div className="main-sorting">
+    <div className="main-sorting__column">
       <span>
         {amountOfResults}
         {' '}
 movies found
       </span>
     </div>
-    <div className = "main-sorting__column">
+    <div className="main-sorting__column">
       <span>Sort by:</span>
-      <Button btnProps = {releaseDateBtn} />
-      <Button btnProps = {ratingBtn} />
+      <Button btnProps={releaseDateBtn} />
+      <Button btnProps={ratingBtn} />
     </div>
   </div>
 );

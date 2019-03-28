@@ -17,10 +17,10 @@ export default class Button extends React.Component {
   render() {
     return (
       <button
-        className = {this.props.btnProps.className}
-        disabled = {this.props.btnProps.disabled}
-        onClick = {this.changeState}
-        type = "button"
+        className={this.props.btnProps.className}
+        disabled={this.props.btnProps.disabled}
+        onClick={this.changeState}
+        type="button"
       >
         {this.props.btnProps.title}
       </button>

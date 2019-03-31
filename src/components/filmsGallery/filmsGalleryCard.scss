@@ -1,0 +1,21 @@
+.film-gallery-card {
+
+  &__image {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  &__name {
+    display: inline-block;
+  }
+
+  &__year {
+    display: inline-block;
+    float: right;
+    border: solid grey 1px;
+  }
+
+  &__genre {
+    font-size: .75rem;
+  }
+}

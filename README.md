@@ -1,5 +1,5 @@
 # ReactJS
- npm install 
- start:dev - development env
- build - compile artifact
- test - run test
+ npm install /n
+ build-dev - development env /n
+ build-prod - compile artifact /n
+ test - run test /n

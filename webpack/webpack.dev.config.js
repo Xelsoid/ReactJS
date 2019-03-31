@@ -9,7 +9,7 @@ module.exports = () => {
     entry: [
       'webpack-hot-middleware/client?reload=true',
       'react-hot-loader/patch',
-      './init.js'
+      './App.js'
     ],
     output: {
       filename: 'main.js',

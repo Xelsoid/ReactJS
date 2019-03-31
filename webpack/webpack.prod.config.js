@@ -6,7 +6,7 @@ module.exports = () => {
     mode: "production",
     devtool: 'none',
 
-    entry: './init.js',
+    entry: './App.js',
     output: {
       filename: 'main.min.js',
       path: path.resolve(__dirname, '../production')

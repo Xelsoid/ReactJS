@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from 'react';
 
 import Button from '../button/Button';
@@ -29,5 +30,13 @@ const SortResults = ({ amountOfResults }) => (
     </div>
   </div>
 );
+
+SortResults.defaultProps = {
+    amountOfResults: 0
+};
+
+SortResults.propTypes = {
+    amountOfResults: PropTypes.number,
+};
 
 export default SortResults;

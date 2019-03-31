@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './button.scss';
 
@@ -31,3 +32,15 @@ export default class Button extends React.Component {
     );
   }
 }
+
+Button.defaultProps = {
+  btnClass: 'btn--primary',
+  disabled: true,
+  title: 'disabled'
+};
+
+Button.propTypes = {
+  btnClass: PropTypes.string,
+  disabled: PropTypes.bool,
+  title: PropTypes.string,
+};

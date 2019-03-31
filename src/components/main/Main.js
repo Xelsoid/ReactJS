@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from 'react';
 
 import SortResults from '../sortResults/SortResults';
@@ -13,5 +14,14 @@ const Main = ({ requestedFilms }) => (
     <FilmsGallery requestedFilms={requestedFilms} />
   </>
 );
+
+Main.defaultProps = {
+    requestedFilms: null
+};
+
+Main.propTypes = {
+    requestedFilms: PropTypes.instanceOf(Object),
+};
+
 
 export default Main;

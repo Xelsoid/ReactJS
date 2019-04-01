@@ -6,6 +6,7 @@
     "build-dev": "set NODE_ENV=development&& node server.js",
     "build-prod": "set NODE_ENV=production&& webpack",
     "test": "jest",
+    "cypress": "cypress open",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix"
   },
@@ -21,6 +22,7 @@
   "homepage": "https://github.com/Xelsoid/ReactJS#readme",
   "dependencies": {
     "babel-eslint": "^10.0.1",
+    "cypress": "^3.2.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
@@ -66,13 +68,17 @@
     "webpack-hot-middleware": "^2.24.3"
   },
   "jest": {
-    "setupFiles": ["./jestsetup.js"],
+    "verbose": true,
+    "setupFiles": [
+      "./jestsetup.js"
+    ],
     "snapshotSerializers": [
       "<rootDir>/node_modules/enzyme-to-json/serializer"
     ],
     "moduleNameMapper": {
       "\\.(css|less|sass|scss)$": "identity-obj-proxy",
-      "\\.(gif|ttf|eot|svg)$": "<rootDir>/src/mockedData/fileMock.js"
-    }
+      "\\.(gif|ttf|eot|svg)$": "identity-obj-proxy"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test))\\.(js|ts|tsx)?$"
   }
 }

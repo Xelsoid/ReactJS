@@ -37,5 +37,13 @@
       },
       "allowChildren": false
     }]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.test.js","*.spec.js"],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ]
 }

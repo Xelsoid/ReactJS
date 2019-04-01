@@ -16,13 +16,14 @@ export default class Button extends React.Component {
   };
 
   render() {
-    const { btnClass, disabled, title } = this.props;
+    const { btnClass, disabled, title, callback } = this.props;
     let { clickedBefore } = this.state;
     return (
       <button
         className={`btn ${btnClass}`}
+        id={title}
         disabled={disabled}
-        onClick={this.changeState}
+        onClick={callback ? callback : this.changeState}
         type="button"
       >
         {title}
@@ -36,11 +37,13 @@ export default class Button extends React.Component {
 Button.defaultProps = {
   btnClass: 'btn--primary',
   disabled: true,
-  title: 'disabled'
+  title: 'disabled',
+  callback: null
 };
 
 Button.propTypes = {
   btnClass: PropTypes.string,
   disabled: PropTypes.bool,
   title: PropTypes.string,
+  callback: PropTypes.instanceOf(Function)
 };

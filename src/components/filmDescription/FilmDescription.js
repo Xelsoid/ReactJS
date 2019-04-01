@@ -14,6 +14,7 @@ const FilmDescription = ({ film }) => {
           <h2 className="film-description__header">{title}</h2>
           <strong className="film-description__useful-info display-block">{tagline}</strong>
           <span>
+
             Year:
             {' '}
             {new Date(release_date).getFullYear()}
@@ -22,6 +23,7 @@ const FilmDescription = ({ film }) => {
           <span>
             {runtime}
             {' '}
+
             min
           </span>
           <p className="film-description__narration">

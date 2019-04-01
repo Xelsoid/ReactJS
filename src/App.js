@@ -11,10 +11,12 @@ import './styles/styles.scss';
 
 import DATA from './mockedData/MOCKED_DATA';
 
+const isDisplayFilmDescription = true;
+
 const App = () => (
   <ErrorBoundary>
     <Header />
-    <Main requestedFilms={DATA} />
+    <Main requestedFilms={DATA} isDisplayFilmDescription={isDisplayFilmDescription} />
     <Footer />
   </ErrorBoundary>
 );

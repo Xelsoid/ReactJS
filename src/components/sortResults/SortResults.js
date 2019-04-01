@@ -10,6 +10,7 @@ const SortResults = ({ amountOfResults }) => (
       <span>
         {amountOfResults}
         {' '}
+
         movies found
       </span>
     </div>

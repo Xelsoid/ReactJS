@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly with film description 1`] = `
+exports[`Main renders correctly with film description 1`] = `
 <Fragment>
   <FilmDescription
     film={
@@ -223,7 +223,7 @@ exports[`renders correctly with film description 1`] = `
 </Fragment>
 `;
 
-exports[`renders correctly without film description 1`] = `
+exports[`Main renders correctly without film description 1`] = `
 <Fragment>
   <SortResults
     amountOfResults={10}

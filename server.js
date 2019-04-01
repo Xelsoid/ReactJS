@@ -22,10 +22,10 @@ if (isDevelopment) {
   app.use(express.static(PUBLIC_PATH));
 }
 
-app.all("*", function(req, res) {
+app.all("*", function (req, res) {
   res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'));
 });
 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log('Listening on port ' + PORT + '...');
 });

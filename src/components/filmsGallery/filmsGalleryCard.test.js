@@ -4,10 +4,11 @@ import DATA from "../../mockedData/MOCKED_DATA";
 
 const film = DATA.data[1];
 
-it('renders correctly', () => {
-  const component = shallow(
-    <FilmsGalleryCard film={film} />
-  );
-  expect(component).toMatchSnapshot();
+describe('FilmsGalleryCard', () => {
+  it('renders correctly', () => {
+    const component = shallow(
+      <FilmsGalleryCard film={film} />
+    );
+    expect(component).toMatchSnapshot();
+  });
 });
-

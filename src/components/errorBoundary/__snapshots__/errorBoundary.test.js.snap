@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `""`;
-
-exports[`renders correctly Error 1`] = `
+exports[`ErrorBoundary renders correctly (Error) 1`] = `
 <div>
   Все поломалось! Но мы починим! Но это не точно!
 </div>
 `;
+
+exports[`ErrorBoundary renders correctly 1`] = `""`;

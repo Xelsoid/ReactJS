@@ -32,36 +32,3 @@ exports[`FilmDescription renders correctly 1`] = `
   </div>
 </div>
 `;
-
-exports[`renders correctly 1`] = `
-<div
-  className="film-description clearfix"
->
-  <div
-    className="film-description__image-wrapper"
-  >
-    <img
-      className="film-description__image"
-    />
-  </div>
-  <div
-    className="film-description__info-wrapper"
-  >
-    <h2
-      className="film-description__header"
-    />
-    <strong
-      className="film-description__useful-info display-block"
-    />
-    <span>
-      Year: NaN 
-    </span>
-    <span>
-      undefined min
-    </span>
-    <p
-      className="film-description__narration"
-    />
-  </div>
-</div>
-`;

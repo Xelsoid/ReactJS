@@ -6,7 +6,7 @@ import Logo from '../logo/Logo';
 import Search from '../search/Search';
 import Button from '../button/Button';
 
-const Header = ({ callback }) => (
+const Header = ({callback}) => (
   <header className="header">
     <Logo />
     <Search />
@@ -38,11 +38,11 @@ const Header = ({ callback }) => (
 );
 
 Header.defaultProps = {
-    callback: null,
+  callback: null,
 };
 
 Header.propTypes = {
-    callback: PropTypes.instanceOf(Function),
+  callback: PropTypes.func
 };
 
 

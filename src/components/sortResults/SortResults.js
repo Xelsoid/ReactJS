@@ -4,12 +4,13 @@ import React from 'react';
 import Button from '../button/Button';
 import './sortResults.scss';
 
-const SortResults = ({ amountOfResults }) => (
+const SortResults = ({amountOfResults}) => (
   <div className="main-sorting">
     <div className="main-sorting__column">
       <span>
         {amountOfResults}
         {' '}
+
 
         movies found
       </span>
@@ -33,11 +34,11 @@ const SortResults = ({ amountOfResults }) => (
 );
 
 SortResults.defaultProps = {
-    amountOfResults: 0
+  amountOfResults: 0
 };
 
 SortResults.propTypes = {
-    amountOfResults: PropTypes.number,
+  amountOfResults: PropTypes.number,
 };
 
 export default SortResults;

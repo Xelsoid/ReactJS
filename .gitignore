@@ -12,6 +12,5 @@
 
 # development
 /build*
-__snapshots__
 
 .idea

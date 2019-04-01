@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<Header
+  callback={null}
+>
+  <header
+    className="header"
+  >
+    <Logo>
+      <h1
+        className="logo"
+      >
+        <a
+          className="logo__link"
+          href="http:/google.com"
+        >
+          Movie Finder
+        </a>
+      </h1>
+    </Logo>
+    <Search>
+      <div
+        className="search-box__wrapper"
+      >
+        <label
+          className="search-box__search-label"
+          htmlFor="searchFilm"
+        >
+          <i
+            aria-hidden="true"
+            className="search-box__search-icon fa fa-search"
+          />
+        </label>
+        <input
+          className="search-box__search-input"
+          id="searchFilm"
+          onClick={[Function]}
+          placeholder="search"
+          type="search"
+        />
+      </div>
+    </Search>
+    <Button
+      btnClass="btn--primary"
+      callback={null}
+      disabled={false}
+      id="btnSearch"
+      title="Search"
+    >
+      <button
+        className="btn btn--primary"
+        disabled={false}
+        id="Search"
+        onClick={[Function]}
+        type="button"
+      >
+        Search
+         
+        notclicked
+      </button>
+    </Button>
+    <div>
+      <span>
+        Searched by:
+      </span>
+      <Button
+        btnClass="btn--primary"
+        callback={null}
+        disabled={false}
+        id="btnTitle"
+        title="Title"
+      >
+        <button
+          className="btn btn--primary"
+          disabled={false}
+          id="Title"
+          onClick={[Function]}
+          type="button"
+        >
+          Title
+           
+          notclicked
+        </button>
+      </Button>
+      <Button
+        btnClass="btn--primary"
+        callback={null}
+        disabled={false}
+        id="btnGenre"
+        title="Genre"
+      >
+        <button
+          className="btn btn--primary"
+          disabled={false}
+          id="Genre"
+          onClick={[Function]}
+          type="button"
+        >
+          Genre
+           
+          notclicked
+        </button>
+      </Button>
+    </div>
+  </header>
+</Header>
+`;

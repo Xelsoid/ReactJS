@@ -5,9 +5,9 @@ import DATA from "../../mockedData/MOCKED_DATA";
 const film = DATA.data[1];
 
 it('renders correctly', () => {
-    const component = shallow (
-      <FilmsGalleryCard film={film} />
-    );
-    expect(component).toMatchSnapshot();
+  const component = shallow(
+    <FilmsGalleryCard film={film} />
+  );
+  expect(component).toMatchSnapshot();
 });
 

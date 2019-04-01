@@ -6,7 +6,7 @@
     border-radius: 16px;
     border: solid black 2px;
 
-    &:hover, &:focus{
+    &:hover, &:focus {
       box-shadow: 0 0 20px grey inset;
     }
   }
@@ -17,7 +17,7 @@
   }
 
   &__search-icon {
-    &:hover, &:focus{
+    &:hover, &:focus {
       transform: scale(1.1);
     }
   }

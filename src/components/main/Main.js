@@ -5,7 +5,7 @@ import SortResults from '../sortResults/SortResults';
 import FilmsGallery from '../filmsGallery/FilmsGallery';
 import FilmDescription from '../filmDescription/FilmDescription';
 
-const Main = ({ requestedFilms, isDisplayFilmDescription }) => (
+const Main = ({requestedFilms, isDisplayFilmDescription}) => (
   <>
     {isDisplayFilmDescription ? <FilmDescription film={requestedFilms.data[1]} /> : null}
     <SortResults amountOfResults={requestedFilms.data.length} />
@@ -14,13 +14,13 @@ const Main = ({ requestedFilms, isDisplayFilmDescription }) => (
 );
 
 Main.defaultProps = {
-    requestedFilms: null,
-    isDisplayFilmDescription: true
+  requestedFilms: null,
+  isDisplayFilmDescription: true
 };
 
 Main.propTypes = {
-    requestedFilms: PropTypes.instanceOf(Object),
-    isDisplayFilmDescription: PropTypes.bool
+  requestedFilms: PropTypes.instanceOf(Object),
+  isDisplayFilmDescription: PropTypes.bool
 };
 
 

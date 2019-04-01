@@ -20,7 +20,7 @@ time, mark, audio, video {
 }
 
 :focus {
-    outline: 0;
+  outline: 0;
 }
 
 article, aside, details, figcaption, figure,
@@ -161,7 +161,7 @@ input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button; /* 2 */
   cursor: pointer; /* 3 */
-  *overflow: visible;  /* 4 */
+  *overflow: visible; /* 4 */
 }
 
 button[disabled],

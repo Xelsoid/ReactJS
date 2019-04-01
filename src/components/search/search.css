@@ -1,0 +1,19 @@
+.search-box__wrapper {
+  display: inline-block;
+  background-color: white;
+  box-shadow: 4px 4px 14px grey;
+  border-radius: 16px;
+  border: solid black 2px; }
+  .search-box__wrapper:hover, .search-box__wrapper:focus {
+    box-shadow: 0 0 20px grey inset; }
+.search-box__search-label {
+  display: inline-block;
+  padding: 10px; }
+.search-box__search-icon:hover, .search-box__search-icon:focus {
+  transform: scale(1.1); }
+.search-box__search-input {
+  padding: 10px;
+  border: none;
+  background-color: transparent; }
+
+/*# sourceMappingURL=search.css.map */

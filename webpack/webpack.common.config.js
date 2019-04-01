@@ -11,15 +11,15 @@ module.exports = () => {
         test: /\.js?$/,
         loader: 'babel-loader',
         exclude: /node_modules/
-      },{
-        test:/\.scss$/,
+      }, {
+        test: /\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader'
         ]
-      },{
-        test:/\.css$/,
+      }, {
+        test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader'

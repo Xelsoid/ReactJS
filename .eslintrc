@@ -13,29 +13,54 @@
       "jsx": true
     }
   },
-
   "env": {
     "browser": true,
     "node": true
   },
-
   "rules": {
     "sort-keys": "off",
     "react/jsx-fragments": "off",
     "react/jsx-filename-extension": "off",
-    "jsx-a11y/label-has-for": [ 2, {
-      "components": [ "Label" ],
-      "required": {
-        "some": [ "nesting", "id" ]
-      },
-      "allowChildren": false
-    }],
-    "jsx-a11y/label-has-associated-control": [ 2, {
-      "components": [ "Label" ],
-      "required": {
-        "some": [ "nesting", "id" ]
-      },
-      "allowChildren": false
-    }]
-  }
+    "jsx-a11y/label-has-for": [
+      2,
+      {
+        "components": [
+          "Label"
+        ],
+        "required": {
+          "some": [
+            "nesting",
+            "id"
+          ]
+        },
+        "allowChildren": false
+      }
+    ],
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "components": [
+          "Label"
+        ],
+        "required": {
+          "some": [
+            "nesting",
+            "id"
+          ]
+        },
+        "allowChildren": false
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.test.js",
+        "*.spec.js"
+      ],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ]
 }

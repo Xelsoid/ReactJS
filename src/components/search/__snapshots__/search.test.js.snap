@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search renders correctly 1`] = `
+<div
+  className="search-box__wrapper"
+>
+  <label
+    className="search-box__search-label"
+    htmlFor="searchFilm"
+  >
+    <i
+      aria-hidden="true"
+      className="search-box__search-icon fa fa-search"
+    />
+  </label>
+  <input
+    className="search-box__search-input"
+    id="searchFilm"
+    onClick={[Function]}
+    placeholder="search"
+    type="search"
+  />
+</div>
+`;

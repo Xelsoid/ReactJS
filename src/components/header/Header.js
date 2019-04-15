@@ -29,8 +29,8 @@ class Header extends React.Component {
   };
 
   render() {
-    console.log(this.state.search);
-    const { makeACall, search } = this.props;
+    const { makeACall } = this.props;
+    const { search } = this.state;
     const url = this.concatenateURL();
     return (
       <header className="header">

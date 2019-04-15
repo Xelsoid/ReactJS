@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk'
 
@@ -8,7 +8,7 @@ import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
 import Header from './components/header/Header';
 import Main from './components/main/Main';
 import Footer from './components/footer/Footer';
-import allReducers from './reducers';
+import allReducers from './reducers/rootReducers';
 
 import './styles/reset.css';
 import './styles/styles.scss';

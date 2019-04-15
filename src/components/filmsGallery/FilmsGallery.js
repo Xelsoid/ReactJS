@@ -6,29 +6,23 @@ import {connect} from "react-redux";
 import './filmsGallery.scss';
 import FilmsGalleryCard from './FilmsGalleryCard';
 import Button from '../button/Button';
-import chooseFilm from '../../actions/chooseFilm';
+import {chooseFilm} from '../../actions/actions';
 
 class FilmsGallery extends React.Component {
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log(prevProps)
-  }
-
   render(){
-    const {films, chooseFilm} = this.props;
-console.log('render');
-    if(!films){return null}
-    const {data} = films;
+    const {movies, chooseFilm} = this.props;
+    if(!movies){return null}
     return (
       <div className="film-gallery">
-        {data.map(film => (
-          <div key={film.id} className="film-gallery--column">
-            <FilmsGalleryCard film={film} />
+        {movies.map(movie => (
+          <div key={movie.id} className="film-gallery--column">
+            <FilmsGalleryCard film={movie} />
             <Button
-              id={film.id}
+              id={movie.id}
               title='Show Description'
               disabled={false}
               btnClass='btn--primary'
-              callback={()=>{chooseFilm(film)}}
+              callback={()=>{chooseFilm(movie)}}
             />
           </div>
         ))}
@@ -39,21 +33,21 @@ console.log('render');
 
 function mapStateToProps(state) {
   return {
-    films: state.films
+    movies: state.films
   };
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({chooseFilm: chooseFilm}, dispatch)
+  return bindActionCreators({chooseFilm}, dispatch)
 }
 
 FilmsGallery.defaultProps = {
-  films: null,
+  movies: null,
   chooseFilm: null
 };
 
 FilmsGallery.propTypes = {
-  films: PropTypes.instanceOf(Object),
+  movies: PropTypes.instanceOf(Object),
   chooseFilm: PropTypes.func
 };
 

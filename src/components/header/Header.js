@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
 import React from 'react';
 import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 
 import './header.scss';
 import Logo from '../logo/Logo';
 import Search from '../search/Search';
 import Button from '../button/Button';
-import {fetchData} from '../../actions/fetchData'
+import {fetchData} from '../../helpers/utils'
 
 class Header extends React.Component {
   constructor() {
@@ -20,8 +21,7 @@ class Header extends React.Component {
 
   concatenateURL = () => {
     const { baseURL, searchBy, search } = this.state;
-    const url = `${baseURL}?search=${search}&searchBy=${searchBy}`;
-    return url;
+    return `${baseURL}?search=${search}&searchBy=${searchBy}`;
   };
 
   collectInputData = (evt) => {
@@ -77,9 +77,7 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return {
-    makeACall: url => dispatch(fetchData(url))
-  };
+  return bindActionCreators({makeACall: url => fetchData(url)}, dispatch)
 }
 
 Header.defaultProps = {

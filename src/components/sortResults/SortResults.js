@@ -5,10 +5,7 @@ import {bindActionCreators} from "redux";
 
 import Button from '../button/Button';
 import './sortResults.scss';
-import sortByRating from '../../actions/sortByRating';
-import sortByDate from '../../actions/sortByDate';
-import {fetchData} from "../../actions/fetchData";
-
+import {sortByRating, sortByDate} from '../../actions/actions';
 
 class SortResults extends React.Component {
   constructor() {
@@ -20,15 +17,15 @@ class SortResults extends React.Component {
   }
 
   render() {
-    const {films, sortByDate, sortByRating} = this.props;
+    const {movies, sortByDate, sortByRating} = this.props;
     const {sortingByRating, sortingByDate} = this.state;
-    if(!films){return null}
+    if(!movies){return null}
 
     return(
       <div className="main-sorting">
         <div className="main-sorting__column">
           <span>
-            {films.data.length}
+            {movies.length}
             {' '}
             movies found
           </span>
@@ -41,8 +38,8 @@ class SortResults extends React.Component {
             disabled={false}
             btnClass='btn--primary'
             callback={()=>{
-              // this.setState({sortingByDate: !sortingByDate});
-              sortByDate(films, sortingByDate);
+                this.setState({sortingByDate: !sortingByDate});
+                sortByDate(movies, sortingByDate);
               }
             }
           />
@@ -52,8 +49,8 @@ class SortResults extends React.Component {
             disabled={false}
             btnClass='btn--primary'
             callback={()=>{
-              // this.setState({sortingByRating: !sortingByRating});
-              sortByRating(films, sortingByRating);
+                this.setState({sortingByRating: !sortingByRating});
+                sortByRating(movies, sortingByRating);
               }
             }
           />
@@ -64,25 +61,22 @@ class SortResults extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    films: state.films
+    movies: state.films
   };
 }
 
 function matchDispatchToProps(dispatch) {
-  return {
-    sortByDate: (films) => dispatch(sortByDate(films)),
-    sortByRating: (films) => dispatch(sortByRating(films)),
-  };
+  return bindActionCreators({sortByDate, sortByRating}, dispatch)
 }
 
 SortResults.defaultProps = {
-  films: {},
+  movies: {},
   sortByDate: null,
   sortByRating: null,
 };
 
 SortResults.propTypes = {
-  films: PropTypes.instanceOf(Object),
+  movies: PropTypes.instanceOf(Object),
   sortByDate: PropTypes.func,
   sortByRating: PropTypes.func,
 };

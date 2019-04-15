@@ -7,6 +7,7 @@ import Button from '../button/Button';
 import './sortResults.scss';
 import sortByRating from '../../actions/sortByRating';
 import sortByDate from '../../actions/sortByDate';
+import {fetchData} from "../../actions/fetchData";
 
 
 class SortResults extends React.Component {
@@ -40,7 +41,7 @@ class SortResults extends React.Component {
             disabled={false}
             btnClass='btn--primary'
             callback={()=>{
-              this.setState({sortingByDate: !sortingByDate});
+              // this.setState({sortingByDate: !sortingByDate});
               sortByDate(films, sortingByDate);
               }
             }
@@ -51,7 +52,7 @@ class SortResults extends React.Component {
             disabled={false}
             btnClass='btn--primary'
             callback={()=>{
-              this.setState({sortingByRating: !sortingByRating});
+              // this.setState({sortingByRating: !sortingByRating});
               sortByRating(films, sortingByRating);
               }
             }
@@ -68,7 +69,10 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({sortByDate: sortByDate, sortByRating: sortByRating}, dispatch)
+  return {
+    sortByDate: (films) => dispatch(sortByDate(films)),
+    sortByRating: (films) => dispatch(sortByRating(films)),
+  };
 }
 
 SortResults.defaultProps = {

@@ -16,7 +16,6 @@ class Header extends React.Component {
       searchBy: null,
       search: 'batman',
     };
-    this.collectInputData.bind(this);
   }
 
   concatenateURL = () => {

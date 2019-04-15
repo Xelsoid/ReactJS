@@ -8,32 +8,36 @@ import FilmsGalleryCard from './FilmsGalleryCard';
 import Button from '../button/Button';
 import chooseFilm from '../../actions/chooseFilm';
 
-const FilmsGallery = ({films, chooseFilm}) => {
-  if(!films){return null}
+class FilmsGallery extends React.Component {
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log(prevProps)
+  }
 
-  const {data} = films;
-  const showFilm = chooseFilm;
-
-  return (
-    <div className="film-gallery">
-      {data.map(film => (
-        <div key={film.id} className="film-gallery--column">
-          <FilmsGalleryCard film={film} />
-          <Button
-            id={film.id}
-            title='Show Description'
-            disabled={false}
-            btnClass='btn--primary'
-            callback={()=>{showFilm(film)}}
-          />
-        </div>
-      ))}
-    </div>
-  )
-};
+  render(){
+    const {films, chooseFilm} = this.props;
+console.log('render');
+    if(!films){return null}
+    const {data} = films;
+    return (
+      <div className="film-gallery">
+        {data.map(film => (
+          <div key={film.id} className="film-gallery--column">
+            <FilmsGalleryCard film={film} />
+            <Button
+              id={film.id}
+              title='Show Description'
+              disabled={false}
+              btnClass='btn--primary'
+              callback={()=>{chooseFilm(film)}}
+            />
+          </div>
+        ))}
+      </div>
+    )
+  }
+}
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
     films: state.films
   };

@@ -3,8 +3,11 @@ import React from 'react';
 import {connect} from "react-redux";
 
 import './filmDescription.scss';
+import {bindActionCreators} from "redux";
+import Button from "../button/Button";
+import {closeDescription} from "../../actions/actions";
 
-const FilmDescription = ({selectedFilm}) => {
+const FilmDescription = ({selectedFilm, closeDescription}) => {
   if(!selectedFilm){return null}
 
   const {poster_path, title, tagline, release_date, runtime, overview} = selectedFilm;
@@ -26,6 +29,13 @@ const FilmDescription = ({selectedFilm}) => {
           {overview}
         </p>
       </div>
+      <Button
+        id='closeDescription'
+        title='Close description'
+        disabled={false}
+        btnClass='btn--primary'
+        callback={() => {closeDescription()}}
+      />
     </div>
   );
 };
@@ -36,12 +46,18 @@ function mapStateToProps(state) {
   };
 }
 
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({closeDescription}, dispatch)
+}
+
 FilmDescription.defaultProps = {
-  selectedFilm: {},
+  selectedFilm: null,
+  closeDescription: null,
 };
 
 FilmDescription.propTypes = {
   selectedFilm: PropTypes.instanceOf(Object),
+  closeDescription: PropTypes.func
 };
 
-export default connect(mapStateToProps)(FilmDescription);
+export default connect(mapStateToProps, matchDispatchToProps)(FilmDescription);

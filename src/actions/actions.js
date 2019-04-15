@@ -20,4 +20,8 @@ export const sortByRating = (films, sortBy) => ({
   sortBy: sortBy
 });
 
+export const closeDescription = () => ({
+  type: "CLOSE_DESCRIPTION"
+});
+
 

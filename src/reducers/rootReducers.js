@@ -23,6 +23,9 @@ const reducer = (state = initialState, action) => {
           : [].concat(action.payload.sort((a,b) => (new Date(b.release_date) - new Date(a.release_date))))
       };
 
+    case "CLOSE_DESCRIPTION":
+      return { ...state, selectedFilm: null};
+
     default:
       return state;
   }

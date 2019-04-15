@@ -1,4 +1,4 @@
-import {chooseFilm, fetchedDataSuccess, sortByDate, sortByRating} from './actions';
+import {chooseFilm, fetchedDataSuccess, sortByDate, sortByRating, closeDescription} from './actions';
 import DATA from '../mockedData/MOCKED_DATA'
 
 describe('actions', () => {
@@ -51,6 +51,13 @@ describe('actions', () => {
         type: "SORT_BY_RATING",
         payload: DATA.data,
         sortBy: false
+      });
+  });
+
+  it('action CLOSE_DESCRIPTION desc', () => {
+    expect(closeDescription()).toEqual(
+      {
+        type: "CLOSE_DESCRIPTION",
       });
   });
 });

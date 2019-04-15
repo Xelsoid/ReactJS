@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import './button.scss';
 
-const Button = ({btnClass, disabled, title, callback}) => {
+const Button = ({btnClass, disabled, id, title, callback}) => {
   return (
     <button
       className={`btn ${btnClass}`}
-      id={title}
+      id={id}
       disabled={disabled}
       onClick={callback}
       type="button"
@@ -21,14 +21,16 @@ Button.defaultProps = {
   btnClass: 'btn--primary',
   disabled: true,
   title: 'disabled',
-  callback: null
+  callback: null,
+  id: '',
 };
 
 Button.propTypes = {
   btnClass: PropTypes.string,
   disabled: PropTypes.bool,
   title: PropTypes.string,
-  callback: PropTypes.func
+  callback: PropTypes.func,
+  id: PropTypes.string,
 };
 
 export default Button;

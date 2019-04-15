@@ -55,4 +55,11 @@ describe('rootReducers', () => {
     };
     expect(reducer(initialState, action)).toEqual({...initialState, films: [].concat(action.payload.sort((a,b) => (new Date(b.release_date) - new Date(a.release_date))))});
   });
+
+  it('should handle CLOSE_DESCRIPTION desc', () => {
+    const action = {
+      type: "CLOSE_DESCRIPTION",
+    };
+    expect(reducer(initialState, action)).toEqual({...initialState, selectedFilm: null});
+  });
 });

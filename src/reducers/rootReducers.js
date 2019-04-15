@@ -1,5 +1,6 @@
 const initialState = {
-  films: null
+  films: null,
+  selectedFilm: null
 };
 
 const reducer = (state = initialState, action) => {

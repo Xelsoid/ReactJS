@@ -10,9 +10,9 @@ context('Actions', () => {
   it('focus search input', () => {
     cy.get('#searchFilm').type('best films')
       .get('#Search').click()
-      .get('.film-description').should('be.visible')
+      .get('.film-description').should('be.not.visible')
       .wait(BASE_DELAY)
-      .get('#Search').click()
-      .get('.film-description').should('not.be.visible')
+      .get('.film-gallery button:first').click()
+      .get('.film-description').should('be.visible')
   })
 });

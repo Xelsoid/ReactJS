@@ -27,6 +27,7 @@ class SortResults extends React.Component {
           <span>
             {movies.length}
             {' '}
+
             movies found
           </span>
         </div>

@@ -6,6 +6,7 @@
     "build-dev": "set NODE_ENV=development&& node server.js",
     "build-prod": "set NODE_ENV=production&& webpack",
     "test": "jest",
+    "test:updateSnapshots": "jest --updateSnapshot",
     "cypress": "cypress open",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix"

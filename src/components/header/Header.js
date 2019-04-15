@@ -7,15 +7,14 @@ import './header.scss';
 import Logo from '../logo/Logo';
 import Search from '../search/Search';
 import Button from '../button/Button';
-import {fetchData} from '../../helpers/utils'
+import fetchData from '../../helpers/utils'
 
 class Header extends React.Component {
   constructor() {
     super();
     this.state = {
       baseURL: 'https://reactjs-cdp.herokuapp.com/movies',
-      searchBy: null,
-      search: 'batman',
+      searchBy: '',
     };
   }
 
@@ -82,12 +81,10 @@ function matchDispatchToProps(dispatch) {
 
 Header.defaultProps = {
   makeACall: null,
-  search: '',
 };
 
 Header.propTypes = {
   makeACall: PropTypes.func,
-  search: PropTypes.string,
 };
 
 

@@ -16,9 +16,10 @@ exports[`Search renders correctly 1`] = `
   <input
     className="search-box__search-input"
     id="searchFilm"
-    onClick={[Function]}
+    onChange={null}
     placeholder="search"
     type="search"
+    value=""
   />
 </div>
 `;

@@ -1,38 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SortResults renders correctly 1`] = `
-<div
-  className="main-sorting"
->
-  <div
-    className="main-sorting__column"
-  >
-    <span>
-      0
-       
-      movies found
-    </span>
-  </div>
-  <div
-    className="main-sorting__column"
-  >
-    <span>
-      Sort by:
-    </span>
-    <Button
-      btnClass="btn--primary"
-      callback={null}
-      disabled={false}
-      id="btnreleaseDate"
-      title="Release Date"
-    />
-    <Button
-      btnClass="btn--primary"
-      callback={null}
-      disabled={false}
-      id="btnRating"
-      title="Rating"
-    />
-  </div>
-</div>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;

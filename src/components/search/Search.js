@@ -1,13 +1,15 @@
 import React from 'react';
 
 import './search.scss';
+import PropTypes from "prop-types";
 
 export default class Search extends React.Component {
-  findFilm = () => {
-    console.log('find film'); // eslint-disable-line no-console
-  };
+  // findFilm = () => {
+  //   console.log('find film'); // eslint-disable-line no-console
+  // };
 
   render() {
+    const {callback, value} = this.props;
     return (
       <div className="search-box__wrapper">
         <label className="search-box__search-label" htmlFor="searchFilm">
@@ -16,11 +18,23 @@ export default class Search extends React.Component {
         <input
           className="search-box__search-input"
           id="searchFilm"
-          onClick={this.findFilm}
+          // onClick={this.findFilm}
           placeholder="search"
           type="search"
+          value={value}
+          onChange={callback}
         />
       </div>
     );
   }
 }
+
+Search.defaultProps = {
+  callback: null,
+  value: ''
+};
+
+Search.propTypes = {
+  callback: PropTypes.func,
+  value: PropTypes.string
+};

@@ -6,29 +6,19 @@ import './button.scss';
 export default class Button extends React.Component {
   constructor() {
     super();
-    this.state = {
-      clickedBefore: 'notclicked',
-    };
   }
-
-  changeState = () => {
-    this.setState({clickedBefore: 'clicked'});
-  };
 
   render() {
     const {btnClass, disabled, title, callback} = this.props;
-    let {clickedBefore} = this.state;
     return (
       <button
         className={`btn ${btnClass}`}
         id={title}
         disabled={disabled}
-        onClick={callback ? callback : this.changeState}
+        onClick={callback}
         type="button"
       >
         {title}
-        {" "}
-        {clickedBefore}
       </button>
     );
   }

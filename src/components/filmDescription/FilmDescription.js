@@ -1,10 +1,13 @@
-import React from 'react';
 import PropTypes from "prop-types";
+import React from 'react';
+import {connect} from "react-redux";
 
 import './filmDescription.scss';
 
-const FilmDescription = ({film}) => {
-  const {poster_path, title, tagline, release_date, runtime, overview} = film;
+const FilmDescription = ({selectedFilm}) => {
+  if(!selectedFilm){return null}
+
+  const {poster_path, title, tagline, release_date, runtime, overview} = selectedFilm;
   return (
     <div className="film-description clearfix">
       <div className="film-description__image-wrapper">
@@ -27,12 +30,18 @@ const FilmDescription = ({film}) => {
   );
 };
 
+function mapStateToProps(state) {
+  return {
+    selectedFilm: state.selectedFilm
+  };
+}
+
 FilmDescription.defaultProps = {
-  film: {},
+  selectedFilm: {},
 };
 
 FilmDescription.propTypes = {
-  film: PropTypes.instanceOf(Object),
+  selectedFilm: PropTypes.instanceOf(Object),
 };
 
-export default FilmDescription;
+export default connect(mapStateToProps)(FilmDescription);

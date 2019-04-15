@@ -1,14 +1,21 @@
-import { combineReducers } from "redux";
-import Films from './films';
-import SelectedFilm from './films-selected';
-import SortByRating from './sortByRating';
-import SortByDate from './sortByDate';
+const initialState = {
+  films: null
+};
 
-const allReducers = combineReducers({
-  films: Films,
-  selectedFilm: SelectedFilm,
-  sortByRating: SortByRating,
-  sortByDate: SortByDate,
-});
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "FILM_SELECTED":
+      return action.payload
+    case "FETCH_DATA":
+      return { ...state, films: action.payload }
+    case "SORT_BY_RATING":
+      return { ...state, films: action.payload }
+    case "SORT_BY_DATE":
+      return { ...state, films: action.payload }
+    default:
+      return state;
+  }
+};
 
-export default allReducers;
+
+export default reducer;

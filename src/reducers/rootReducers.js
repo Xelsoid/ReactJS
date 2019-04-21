@@ -1,3 +1,6 @@
+import ACTIONS from '../helpers/constants'
+import { sortMoviesByRating, sortMoviesByDate } from '../helpers/utils'
+
 const initialState = {
   films: null,
   selectedFilm: null
@@ -5,25 +8,21 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "FILM_SELECTED":
+    case ACTIONS.FILM_SELECTED:
       return { ...state, selectedFilm: action.payload };
 
-    case "FETCH_DATA":
+    case ACTIONS.FETCH_DATA:
       return { ...state, films: action.payload.data };
 
-    case "SORT_BY_RATING":
-      return { ...state, films: action.sortBy
-          ? [].concat(action.payload.sort((a,b) => (a.vote_average - b.vote_average)))
-          : [].concat(action.payload.sort((a,b) => (b.vote_average - a.vote_average)))
+    case ACTIONS.SORT_BY_RATING:
+      return { ...state, films: [...sortMoviesByRating(action.payload.films, action.payload.isSortedASC)]
       };
 
-    case "SORT_BY_DATE":
-      return { ...state, films: action.sortBy
-          ? [].concat(action.payload.sort((a,b) => (new Date(a.release_date) - new Date(b.release_date))))
-          : [].concat(action.payload.sort((a,b) => (new Date(b.release_date) - new Date(a.release_date))))
+    case ACTIONS.SORT_BY_DATE:
+      return { ...state, films: [...sortMoviesByDate(action.payload.films, action.payload.isSortedASC)]
       };
 
-    case "CLOSE_DESCRIPTION":
+    case ACTIONS.CLOSE_DESCRIPTION:
       return { ...state, selectedFilm: null};
 
     default:

@@ -30,7 +30,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   title: PropTypes.string,
   callback: PropTypes.func,
-  id: PropTypes.string,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default Button;

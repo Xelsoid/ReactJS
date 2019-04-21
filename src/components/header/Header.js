@@ -7,30 +7,30 @@ import './header.scss';
 import Logo from '../logo/Logo';
 import Search from '../search/Search';
 import Button from '../button/Button';
-import fetchData from '../../helpers/utils'
+import {fetchData} from '../../helpers/utils'
 
 class Header extends React.Component {
   constructor() {
     super();
     this.state = {
-      baseURL: 'https://reactjs-cdp.herokuapp.com/movies',
       searchBy: '',
+      search: '',
     };
   }
-
-  concatenateURL = () => {
-    const { baseURL, searchBy, search } = this.state;
-    return `${baseURL}?search=${search}&searchBy=${searchBy}`;
-  };
 
   collectInputData = (evt) => {
     this.setState({search: evt.target.value})
   };
 
+  fetchDataFromServerCallBack = () => {
+    const { fetchDataFromServer } = this.props;
+    const { search, searchBy } = this.state;
+
+    fetchDataFromServer(search, searchBy)
+  };
+
   render() {
-    const { makeACall } = this.props;
     const { search } = this.state;
-    const url = this.concatenateURL();
     return (
       <header className="header">
         <Logo />
@@ -43,9 +43,7 @@ class Header extends React.Component {
           title='Search'
           disabled={false}
           btnClass='btn--primary'
-          callback={() => {
-            makeACall(url)
-          }}
+          callback={this.fetchDataFromServerCallBack}
         />
         <div>
           <span>Searched by:</span>
@@ -76,16 +74,15 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({makeACall: url => fetchData(url)}, dispatch)
+  return bindActionCreators({fetchDataFromServer: (search, searchBy) => fetchData(search, searchBy)}, dispatch)
 }
 
 Header.defaultProps = {
-  makeACall: null,
+  fetchDataFromServer: null,
 };
 
 Header.propTypes = {
-  makeACall: PropTypes.func,
+  fetchDataFromServer: PropTypes.func,
 };
-
 
 export default connect(mapStateToProps, matchDispatchToProps)(Header);

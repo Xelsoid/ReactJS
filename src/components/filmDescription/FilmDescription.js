@@ -11,6 +11,7 @@ const FilmDescription = ({selectedFilm, closeDescription}) => {
   if(!selectedFilm){return null}
 
   const {poster_path, title, tagline, release_date, runtime, overview} = selectedFilm;
+  const closeDescriptionCallBack = () => {closeDescription()};
   return (
     <div className="film-description clearfix">
       <div className="film-description__image-wrapper">
@@ -34,7 +35,7 @@ const FilmDescription = ({selectedFilm, closeDescription}) => {
         title='Close description'
         disabled={false}
         btnClass='btn--primary'
-        callback={() => {closeDescription()}}
+        callback={closeDescriptionCallBack}
       />
     </div>
   );
@@ -56,7 +57,14 @@ FilmDescription.defaultProps = {
 };
 
 FilmDescription.propTypes = {
-  selectedFilm: PropTypes.instanceOf(Object),
+  selectedFilm: PropTypes.shape({
+    poster_path: PropTypes.string,
+    title: PropTypes.string,
+    tagline: PropTypes.string,
+    release_date: PropTypes.string,
+    runtime: PropTypes.number,
+    overview: PropTypes.string,
+  }),
   closeDescription: PropTypes.func
 };
 

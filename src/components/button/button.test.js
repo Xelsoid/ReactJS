@@ -13,17 +13,4 @@ describe('Button', () => {
     );
     expect(component).toMatchSnapshot();
   });
-
-  it('clicked', () => {
-    const component = shallow(
-      <Button
-        id='default'
-        title='Default'
-        disabled={false}
-        btnClass='btn--primary'
-      />
-    );
-    component.simulate('click');
-    expect(component.text()).toMatch('Default clicked')
-  });
 });

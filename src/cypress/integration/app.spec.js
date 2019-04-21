@@ -9,10 +9,16 @@ context('Actions', () => {
 
   it('focus search input', () => {
     cy.get('#searchFilm').type('best films')
-      .get('#Search').click()
-      .get('.film-description').should('be.visible')
+      .get('#btnSearch').click()
+      .get('.film-description').should('be.not.visible')
       .wait(BASE_DELAY)
-      .get('#Search').click()
-      .get('.film-description').should('not.be.visible')
+      .get('.film-gallery button:first').click()
+      .get('.film-description').should('be.visible')
+      .get('#closeDescription').click()
+      .get('.film-description').should('be.not.visible')
+      .get('.film-gallery button:first').click()
+      .get('.film-description').should('be.visible')
+      .reload()
+      .get('.film-gallery').should('be.visible')
   })
 });

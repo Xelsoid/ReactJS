@@ -1,10 +1,17 @@
-import React from 'react';
 import PropTypes from "prop-types";
+import React from 'react';
+import {connect} from "react-redux";
 
 import './filmDescription.scss';
+import {bindActionCreators} from "redux";
+import Button from "../button/Button";
+import {closeDescription} from "../../actions/actions";
 
-const FilmDescription = ({film}) => {
-  const {poster_path, title, tagline, release_date, runtime, overview} = film;
+const FilmDescription = ({selectedFilm, closeDescription}) => {
+  if(!selectedFilm){return null}
+
+  const {poster_path, title, tagline, release_date, runtime, overview} = selectedFilm;
+  const closeDescriptionCallBack = () => {closeDescription()};
   return (
     <div className="film-description clearfix">
       <div className="film-description__image-wrapper">
@@ -23,16 +30,42 @@ const FilmDescription = ({film}) => {
           {overview}
         </p>
       </div>
+      <Button
+        id='closeDescription'
+        title='Close description'
+        disabled={false}
+        btnClass='btn--primary'
+        callback={closeDescriptionCallBack}
+      />
     </div>
   );
 };
 
+function mapStateToProps(state) {
+  return {
+    selectedFilm: state.selectedFilm
+  };
+}
+
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({closeDescription}, dispatch)
+}
+
 FilmDescription.defaultProps = {
-  film: {},
+  selectedFilm: null,
+  closeDescription: null,
 };
 
 FilmDescription.propTypes = {
-  film: PropTypes.instanceOf(Object),
+  selectedFilm: PropTypes.shape({
+    poster_path: PropTypes.string,
+    title: PropTypes.string,
+    tagline: PropTypes.string,
+    release_date: PropTypes.string,
+    runtime: PropTypes.number,
+    overview: PropTypes.string,
+  }),
+  closeDescription: PropTypes.func
 };
 
-export default FilmDescription;
+export default connect(mapStateToProps, matchDispatchToProps)(FilmDescription);

@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import React from 'react';
 import {connect} from "react-redux";
+import {NavLink} from "react-router-dom";
+import {bindActionCreators} from "redux";
 
 import './filmDescription.scss';
-import {bindActionCreators} from "redux";
 import Button from "../button/Button";
 import {closeDescription} from "../../actions/actions";
 
@@ -30,13 +31,15 @@ const FilmDescription = ({selectedFilm, closeDescription}) => {
           {overview}
         </p>
       </div>
-      <Button
-        id='closeDescription'
-        title='Close description'
-        disabled={false}
-        btnClass='btn--primary'
-        callback={closeDescriptionCallBack}
-      />
+      <NavLink to="/">
+        <Button
+          id='closeDescription'
+          title='Close description'
+          disabled={false}
+          btnClass='btn--primary'
+          callback={closeDescriptionCallBack}
+        />
+      </NavLink>
     </div>
   );
 };

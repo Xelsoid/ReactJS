@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
+import {NavLink} from "react-router-dom";
 
 import './header.scss';
 import Logo from '../logo/Logo';
@@ -25,12 +26,13 @@ class Header extends React.Component {
   fetchDataFromServerCallBack = () => {
     const { fetchDataFromServer } = this.props;
     const { search, searchBy } = this.state;
-
     fetchDataFromServer(search, searchBy)
   };
 
   render() {
     const { search } = this.state;
+    const { currentURL } = this.props;
+
     return (
       <header className="header">
         <Logo />
@@ -38,13 +40,15 @@ class Header extends React.Component {
           value={search}
           callback={this.collectInputData}
         />
-        <Button
-          id='btnSearch'
-          title='Search'
-          disabled={false}
-          btnClass='btn--primary'
-          callback={this.fetchDataFromServerCallBack}
-        />
+        <NavLink to={currentURL}>
+          <Button
+            id='btnSearch'
+            title='Search'
+            disabled={false}
+            btnClass='btn--primary'
+            callback={this.fetchDataFromServerCallBack}
+          />
+        </NavLink>
         <div>
           <span>Searched by:</span>
           <Button
@@ -69,6 +73,7 @@ class Header extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    currentURL: state.currentURL,
     films: state.films
   };
 }
@@ -79,10 +84,12 @@ function matchDispatchToProps(dispatch) {
 
 Header.defaultProps = {
   fetchDataFromServer: null,
+  currentURL: '',
 };
 
 Header.propTypes = {
   fetchDataFromServer: PropTypes.func,
+  currentURL: PropTypes.string,
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(Header);

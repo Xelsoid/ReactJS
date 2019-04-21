@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
+import {NavLink} from "react-router-dom";
 
 import './filmsGallery.scss';
 import FilmsGalleryCard from './FilmsGalleryCard';
@@ -15,15 +16,17 @@ const FilmsGallery = ({movies, chooseFilm}) => {
       {movies.map(movie => (
         <div key={movie.id} className="film-gallery--column">
           <FilmsGalleryCard film={movie} />
-          <Button
-            id={movie.id}
-            title='Show Description'
-            disabled={false}
-            btnClass='btn--primary'
-            callback={()=>{chooseFilm(movie)}}
-          />
+          <NavLink to={`/description/${movie.title}`}>
+            <Button
+              id={movie.id}
+              title='Show Description'
+              disabled={false}
+              btnClass='btn--primary'
+              callback={()=>{chooseFilm(movie)}}
+            />
+          </NavLink>
         </div>
-      ))}
+          ))}
     </div>
   )
 };

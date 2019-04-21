@@ -5,9 +5,9 @@ export const chooseFilm = (film) => ({
   payload: film,
 });
 
-export const fetchedDataSuccess = (films) => ({
+export const fetchedDataSuccess = (films, currentURL) => ({
   type: ACTIONS.FETCH_DATA,
-  payload: films,
+  payload: {films: films, currentURL: currentURL},
 });
 
 export const sortByDate = (films, isSortedASC) => ({

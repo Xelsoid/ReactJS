@@ -3,7 +3,8 @@ import { sortMoviesByRating, sortMoviesByDate } from '../helpers/utils'
 
 const initialState = {
   films: null,
-  selectedFilm: null
+  selectedFilm: null,
+  currentURL: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,15 +13,13 @@ const reducer = (state = initialState, action) => {
       return { ...state, selectedFilm: action.payload };
 
     case ACTIONS.FETCH_DATA:
-      return { ...state, films: action.payload.data };
+      return { ...state, films: action.payload.films.data, currentURL: action.payload.currentURL };
 
     case ACTIONS.SORT_BY_RATING:
-      return { ...state, films: [...sortMoviesByRating(action.payload.films, action.payload.isSortedASC)]
-      };
+      return { ...state, films: [...sortMoviesByRating(action.payload.films, action.payload.isSortedASC)] };
 
     case ACTIONS.SORT_BY_DATE:
-      return { ...state, films: [...sortMoviesByDate(action.payload.films, action.payload.isSortedASC)]
-      };
+      return { ...state, films: [...sortMoviesByDate(action.payload.films, action.payload.isSortedASC)] };
 
     case ACTIONS.CLOSE_DESCRIPTION:
       return { ...state, selectedFilm: null};

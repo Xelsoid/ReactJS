@@ -24,4 +24,4 @@ const App = () => {
   )
 };
 
-ReactDOM.render( <Provider store={store}><App /></Provider>, document.getElementById('rootContainer'));
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('rootContainer'));

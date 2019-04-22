@@ -26,7 +26,7 @@ const FilmsGallery = ({movies, chooseFilm}) => {
             />
           </NavLink>
         </div>
-          ))}
+      ))}
     </div>
   )
 };

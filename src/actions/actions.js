@@ -5,9 +5,9 @@ export const chooseFilm = (film) => ({
   payload: film,
 });
 
-export const fetchedDataSuccess = (films, currentURL) => ({
+export const fetchedDataSuccess = (films) => ({
   type: ACTIONS.FETCH_DATA,
-  payload: {films: films, currentURL: currentURL},
+  payload: {films: films},
 });
 
 export const sortByDate = (films, isSortedASC) => ({
@@ -18,10 +18,6 @@ export const sortByDate = (films, isSortedASC) => ({
 export const sortByRating = (films, isSortedASC) => ({
   type: ACTIONS.SORT_BY_RATING,
   payload: {films: films, isSortedASC: isSortedASC},
-});
-
-export const closeDescription = () => ({
-  type: ACTIONS.CLOSE_DESCRIPTION
 });
 
 

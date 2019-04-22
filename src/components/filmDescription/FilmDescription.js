@@ -2,17 +2,15 @@ import PropTypes from "prop-types";
 import React from 'react';
 import {connect} from "react-redux";
 import {NavLink} from "react-router-dom";
-import {bindActionCreators} from "redux";
 
 import './filmDescription.scss';
 import Button from "../button/Button";
-import {closeDescription} from "../../actions/actions";
 
-const FilmDescription = ({selectedFilm, closeDescription}) => {
+const FilmDescription = ({selectedFilm}) => {
   if(!selectedFilm){return null}
 
   const {poster_path, title, tagline, release_date, runtime, overview} = selectedFilm;
-  const closeDescriptionCallBack = () => {closeDescription()};
+
   return (
     <div className="film-description clearfix">
       <div className="film-description__image-wrapper">
@@ -37,7 +35,7 @@ const FilmDescription = ({selectedFilm, closeDescription}) => {
           title='Close description'
           disabled={false}
           btnClass='btn--primary'
-          callback={closeDescriptionCallBack}
+          // callback={closeDescriptionCallBack}
         />
       </NavLink>
     </div>
@@ -48,10 +46,6 @@ function mapStateToProps(state) {
   return {
     selectedFilm: state.selectedFilm
   };
-}
-
-function matchDispatchToProps(dispatch) {
-  return bindActionCreators({closeDescription}, dispatch)
 }
 
 FilmDescription.defaultProps = {
@@ -71,4 +65,4 @@ FilmDescription.propTypes = {
   closeDescription: PropTypes.func
 };
 
-export default connect(mapStateToProps, matchDispatchToProps)(FilmDescription);
+export default connect(mapStateToProps)(FilmDescription);

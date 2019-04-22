@@ -2,7 +2,14 @@ import {fetchedDataSuccess} from "../actions/actions";
 
 export const fetchData = (search, searchBy) => {
   const baseURL = 'https://reactjs-cdp.herokuapp.com';
-  const searchPart = `/movies?search=${search}&searchBy=${searchBy}`;
+  let searchPart = `/movies?search=${search}&searchBy=${searchBy}`;
+
+  if(!search && !searchBy) {
+    searchPart = window.location.pathname + window.location.search;
+  } else {
+    searchPart = `/movies?search=${search}&searchBy=${searchBy}`;
+  }
+
   const finalURL =`${baseURL}${searchPart}`;
 
   return (dispatch) => {

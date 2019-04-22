@@ -12,6 +12,7 @@ if (isDevelopment) {
   const webpackConfig = require('./webpack.config');
   const compiler = webpack(webpackConfig());
   app.use(require('webpack-dev-middleware')(compiler, {
+    historyApiFallback: true,
     hot: true,
     stats: {
       colors: true

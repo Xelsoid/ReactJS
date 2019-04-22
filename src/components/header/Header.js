@@ -19,6 +19,15 @@ class Header extends React.Component {
     };
   }
 
+  componentDidMount() {
+    console.log(window.location.search);
+    const { fetchDataFromServer } = this.props;
+    const { search, searchBy } = this.state;
+    if(window.location.search) {
+      fetchDataFromServer(search, searchBy)
+    }
+  }
+
   collectInputData = (evt) => {
     this.setState({search: evt.target.value})
   };
@@ -30,8 +39,7 @@ class Header extends React.Component {
   };
 
   render() {
-    const { search } = this.state;
-    const { currentURL } = this.props;
+    const { search, searchBy } = this.state;
 
     return (
       <header className="header">
@@ -40,7 +48,7 @@ class Header extends React.Component {
           value={search}
           callback={this.collectInputData}
         />
-        <NavLink to={currentURL}>
+        <NavLink to={`movies?search=${search}&searchBy=${searchBy}`}>
           <Button
             id='btnSearch'
             title='Search'
@@ -73,7 +81,6 @@ class Header extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    currentURL: state.currentURL,
     films: state.films
   };
 }
@@ -84,12 +91,10 @@ function matchDispatchToProps(dispatch) {
 
 Header.defaultProps = {
   fetchDataFromServer: null,
-  currentURL: '',
 };
 
 Header.propTypes = {
   fetchDataFromServer: PropTypes.func,
-  currentURL: PropTypes.string,
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(Header);

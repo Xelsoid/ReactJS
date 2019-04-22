@@ -20,11 +20,8 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
-    console.log(window.location.search);
-    const { fetchDataFromServer } = this.props;
-    const { search, searchBy } = this.state;
     if(window.location.search) {
-      fetchDataFromServer(search, searchBy)
+      this.fetchDataFromServerCallBack()
     }
   }
 

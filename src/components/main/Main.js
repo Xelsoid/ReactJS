@@ -1,18 +1,17 @@
 import React from 'react';
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import SortResults from '../sortResults/SortResults';
 import FilmsGallery from '../filmsGallery/FilmsGallery';
 import FilmDescription from '../filmDescription/FilmDescription';
 import NotFound from '../notFound/NotFound';
 
-
 const Main = () => (
   <Switch>
     <Route exact path="/" component={null} />
-    <Route path="/description/*" component={FilmDescription} />
+    <Route path="/description/:filmName" component={FilmDescription} />
     <Route
-      path="/movies*"
+      path="/movies"
       render={() => (
         <div>
           <SortResults />
@@ -20,7 +19,8 @@ const Main = () => (
         </div>
       )}
     />
-    <Route path="*" component={NotFound} />
+    <Route path="/empty" component={NotFound} />
+    <Redirect from="*" to="/empty" />
   </Switch>
 );
 

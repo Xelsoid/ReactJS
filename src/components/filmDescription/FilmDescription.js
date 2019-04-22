@@ -6,7 +6,8 @@ import {NavLink} from "react-router-dom";
 import './filmDescription.scss';
 import Button from "../button/Button";
 
-const FilmDescription = ({selectedFilm}) => {
+const FilmDescription = (props) => {
+  const {selectedFilm} = props;
   if(!selectedFilm){return null}
 
   const {poster_path, title, tagline, release_date, runtime, overview} = selectedFilm;
@@ -35,7 +36,6 @@ const FilmDescription = ({selectedFilm}) => {
           title='Close description'
           disabled={false}
           btnClass='btn--primary'
-          // callback={closeDescriptionCallBack}
         />
       </NavLink>
     </div>
@@ -50,7 +50,6 @@ function mapStateToProps(state) {
 
 FilmDescription.defaultProps = {
   selectedFilm: null,
-  closeDescription: null,
 };
 
 FilmDescription.propTypes = {
@@ -62,7 +61,6 @@ FilmDescription.propTypes = {
     runtime: PropTypes.number,
     overview: PropTypes.string,
   }),
-  closeDescription: PropTypes.func
 };
 
 export default connect(mapStateToProps)(FilmDescription);

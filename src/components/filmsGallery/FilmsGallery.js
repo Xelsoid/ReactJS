@@ -9,7 +9,7 @@ import FilmsGalleryCard from './FilmsGalleryCard';
 import Button from '../button/Button';
 import {chooseFilm} from '../../actions/actions';
 
-const FilmsGallery = ({movies, chooseFilm}) => {
+export const FilmsGallery = ({movies, chooseFilm}) => {
   if(!movies){return null}
   return (
     <div className="film-gallery">

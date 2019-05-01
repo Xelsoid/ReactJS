@@ -10,7 +10,7 @@ import NotFound from '../notFound/NotFound';
 const Main = () => (
   <Switch>
     <Route exact path={PATHS.DEFAULT} component={null} />
-    <Route path={PATHS.MOVIE} component={FilmDescription} />
+    <Route path={`${PATHS.MOVIE}/:name`} component={FilmDescription} />
     <Route
       path={PATHS.MOVIES}
       render={() => (

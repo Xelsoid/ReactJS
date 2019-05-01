@@ -3,6 +3,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import {NavLink} from "react-router-dom";
 
+import { PATHS } from "../../helpers/constants";
 import './filmDescription.scss';
 import Button from "../button/Button";
 
@@ -30,7 +31,7 @@ const FilmDescription = (props) => {
           {overview}
         </p>
       </div>
-      <NavLink to="/">
+      <NavLink to={PATHS.DEFAULT}>
         <Button
           id='closeDescription'
           title='Close description'

@@ -1,14 +1,15 @@
 import PropTypes from "prop-types";
 import React from 'react';
-import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
-import {NavLink} from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { NavLink } from "react-router-dom";
 
 import './header.scss';
 import Logo from '../logo/Logo';
 import Search from '../search/Search';
 import Button from '../button/Button';
-import {fetchData} from '../../helpers/utils'
+import { fetchData } from '../../helpers/utils'
+import { PATHS } from "../../helpers/constants";
 
 class Header extends React.Component {
   constructor() {
@@ -45,7 +46,7 @@ class Header extends React.Component {
           value={search}
           callback={this.collectInputData}
         />
-        <NavLink to={`movies?search=${search}&searchBy=${searchBy}`}>
+        <NavLink to={`${PATHS.MOVIES}?search=${search}&searchBy=${searchBy}`}>
           <Button
             id='btnSearch'
             title='Search'

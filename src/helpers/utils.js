@@ -1,4 +1,5 @@
-import {fetchedDataSuccess} from "../actions/actions";
+import { fetchedDataSuccess } from "../actions/actions";
+import { PATHS } from "./constants";
 
 export const fetchData = (search, searchBy) => {
   const baseURL = 'https://reactjs-cdp.herokuapp.com';
@@ -15,7 +16,8 @@ export const fetchData = (search, searchBy) => {
   return (dispatch) => {
     fetch(finalURL)
       .then(response => response.json())
-      .then(films => dispatch(fetchedDataSuccess(films, searchPart)));
+      .then(films => dispatch(fetchedDataSuccess(films, searchPart)))
+      .catch(() => {window.location.href = PATHS.NOTFOUND;})
   }
 };
 

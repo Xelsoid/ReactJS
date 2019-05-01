@@ -9,7 +9,7 @@ const ACTIONS = {
 const PATHS = {
   DEFAULT: '/',
   MOVIES: '/movies',
-  MOVIE: '/description/:name',
+  MOVIE: '/description',
   NOTFOUND: '/page-not-found',
   RESTURLS: '*',
 };

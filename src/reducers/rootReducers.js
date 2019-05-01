@@ -1,4 +1,4 @@
-import ACTIONS from '../helpers/constants'
+import { ACTIONS } from '../helpers/constants'
 import { sortMoviesByRating, sortMoviesByDate } from '../helpers/utils'
 
 const initialState = {

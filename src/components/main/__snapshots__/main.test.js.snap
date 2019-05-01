@@ -1,17 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Main renders correctly with film description 1`] = `
-<Fragment>
-  <Connect(FilmDescription) />
-  <Connect(SortResults) />
-  <Connect(FilmsGallery) />
-</Fragment>
+<Switch>
+  <Route
+    component={null}
+    exact={true}
+    path="/"
+  />
+  <Route
+    component={[Function]}
+    path="/description/:name"
+  />
+  <Route
+    path="/movies"
+    render={[Function]}
+  />
+  <Route
+    component={[Function]}
+    path="/page-not-found"
+  />
+  <Redirect
+    from="*"
+    to="/page-not-found"
+  />
+</Switch>
 `;
 
 exports[`Main renders correctly without film description 1`] = `
-<Fragment>
-  <Connect(FilmDescription) />
-  <Connect(SortResults) />
-  <Connect(FilmsGallery) />
-</Fragment>
+<Switch>
+  <Route
+    component={null}
+    exact={true}
+    path="/"
+  />
+  <Route
+    component={[Function]}
+    path="/description/:name"
+  />
+  <Route
+    path="/movies"
+    render={[Function]}
+  />
+  <Route
+    component={[Function]}
+    path="/page-not-found"
+  />
+  <Redirect
+    from="*"
+    to="/page-not-found"
+  />
+</Switch>
 `;

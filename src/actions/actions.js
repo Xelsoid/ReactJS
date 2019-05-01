@@ -1,4 +1,4 @@
-import ACTIONS from '../helpers/constants'
+import { ACTIONS } from '../helpers/constants'
 
 export const chooseFilm = (film) => ({
   type: ACTIONS.FILM_SELECTED,

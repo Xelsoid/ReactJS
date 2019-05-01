@@ -21,39 +21,36 @@ class SortResults extends React.Component {
     const {sortingByRating, sortingByDate} = this.state;
     if(!movies){return null}
 
+    const sortByDateCallback = () => {
+      this.setState({sortingByDate: !sortingByDate});
+      sortByDate(movies, sortingByDate);
+    };
+
+    const sortByRatingCallback = () => {
+      this.setState({sortingByRating: !sortingByRating});
+      sortByRating(movies, sortingByRating);
+    };
+
     return(
       <div className="main-sorting">
         <div className="main-sorting__column">
-          <span>
-            {movies.length}
-            {' '}
-
-            movies found
-          </span>
+          <span>{`${movies.length} movies found`}</span>
         </div>
         <div className="main-sorting__column">
           <span>Sort by:</span>
           <Button
-            id='btnreleaseDate'
+            id='btnReleaseDate'
             title='Release Date'
             disabled={false}
             btnClass='btn--primary'
-            callback={()=>{
-                this.setState({sortingByDate: !sortingByDate});
-                sortByDate(movies, sortingByDate);
-              }
-            }
+            callback={sortByDateCallback}
           />
           <Button
             id='btnRating'
             title='Rating'
             disabled={false}
             btnClass='btn--primary'
-            callback={()=>{
-                this.setState({sortingByRating: !sortingByRating});
-                sortByRating(movies, sortingByRating);
-              }
-            }
+            callback={sortByRatingCallback}
           />
         </div>
       </div>

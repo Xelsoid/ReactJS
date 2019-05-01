@@ -1,5 +1,5 @@
-import {chooseFilm, fetchedDataSuccess, sortByDate, sortByRating, closeDescription} from './actions';
-import ACTIONS from '../helpers/constants';
+import { chooseFilm, fetchedDataSuccess, sortByDate, sortByRating } from './actions';
+import { ACTIONS } from '../helpers/constants';
 import DATA from '../mockedData/MOCKED_DATA'
 
 describe('actions', () => {
@@ -15,7 +15,7 @@ describe('actions', () => {
     expect(fetchedDataSuccess(DATA.data)).toEqual(
       {
         type: ACTIONS.FETCH_DATA,
-        payload: DATA.data
+        payload: {films: DATA.data}
       });
   });
 
@@ -48,13 +48,6 @@ describe('actions', () => {
       {
         type: ACTIONS.SORT_BY_RATING,
         payload: {films: DATA.data, isSortedASC: false}
-      });
-  });
-
-  it('action CLOSE_DESCRIPTION desc', () => {
-    expect(closeDescription()).toEqual(
-      {
-        type: ACTIONS.CLOSE_DESCRIPTION,
       });
   });
 });

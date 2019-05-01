@@ -1,13 +1,15 @@
 import PropTypes from "prop-types";
 import React from 'react';
-import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { NavLink } from "react-router-dom";
 
 import './header.scss';
 import Logo from '../logo/Logo';
 import Search from '../search/Search';
 import Button from '../button/Button';
-import {fetchData} from '../../helpers/utils'
+import { fetchData } from '../../helpers/utils'
+import { PATHS } from "../../helpers/constants";
 
 class Header extends React.Component {
   constructor() {
@@ -18,6 +20,12 @@ class Header extends React.Component {
     };
   }
 
+  componentDidMount() {
+    if(window.location.search) {
+      this.fetchDataFromServerCallBack()
+    }
+  }
+
   collectInputData = (evt) => {
     this.setState({search: evt.target.value})
   };
@@ -25,12 +33,12 @@ class Header extends React.Component {
   fetchDataFromServerCallBack = () => {
     const { fetchDataFromServer } = this.props;
     const { search, searchBy } = this.state;
-
     fetchDataFromServer(search, searchBy)
   };
 
   render() {
-    const { search } = this.state;
+    const { search, searchBy } = this.state;
+
     return (
       <header className="header">
         <Logo />
@@ -38,13 +46,15 @@ class Header extends React.Component {
           value={search}
           callback={this.collectInputData}
         />
-        <Button
-          id='btnSearch'
-          title='Search'
-          disabled={false}
-          btnClass='btn--primary'
-          callback={this.fetchDataFromServerCallBack}
-        />
+        <NavLink to={`${PATHS.MOVIES}?search=${search}&searchBy=${searchBy}`}>
+          <Button
+            id='btnSearch'
+            title='Search'
+            disabled={false}
+            btnClass='btn--primary'
+            callback={this.fetchDataFromServerCallBack}
+          />
+        </NavLink>
         <div>
           <span>Searched by:</span>
           <Button

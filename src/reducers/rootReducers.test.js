@@ -1,5 +1,5 @@
 import reducer from './rootReducers';
-import ACTIONS from '../helpers/constants';
+import { ACTIONS } from '../helpers/constants';
 import DATA from '../mockedData/MOCKED_DATA'
 
 describe('rootReducers', () => {
@@ -50,12 +50,5 @@ describe('rootReducers', () => {
       payload: {films: DATA.data, isSortedASC: false}
     };
     expect(reducer(initialState, action)).toEqual({...initialState, films: [].concat(action.payload.films.sort((a,b) => (new Date(b.release_date) - new Date(a.release_date))))});
-  });
-
-  it('should handle CLOSE_DESCRIPTION desc', () => {
-    const action = {
-      type: ACTIONS.CLOSE_DESCRIPTION,
-    };
-    expect(reducer(initialState, action)).toEqual({...initialState, selectedFilm: null});
   });
 });

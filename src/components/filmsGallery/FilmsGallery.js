@@ -10,7 +10,7 @@ import Button from '../button/Button';
 import { chooseFilm } from '../../actions/actions';
 import { PATHS } from "../../helpers/constants";
 
-const FilmsGallery = ({movies, chooseFilm}) => {
+export const FilmsGallery = ({movies, chooseFilm}) => {
   if(!movies){return null}
 
   const chooseFilmCallback = (movie) => {chooseFilm(movie)};

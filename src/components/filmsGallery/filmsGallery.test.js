@@ -1,13 +1,12 @@
 import React from 'react';
-import FilmsGallery from './FilmsGallery';
-import DATA from "../../mockedData/MOCKED_DATA";
+import { FilmsGallery } from './FilmsGallery';
+import requestedFilms from '../../mockedData/MOCKED_DATA';
 
-const requestedFilms = DATA;
 
 describe('FilmsGallery', () => {
   it('renders correctly', () => {
     const component = shallow(
-      <FilmsGallery requestedFilms={requestedFilms} />
+      <FilmsGallery movies={requestedFilms.data} chooseFilm={() => {}} />
     );
     expect(component).toMatchSnapshot();
   });

@@ -8,21 +8,23 @@ import FilmDescription from '../filmDescription/FilmDescription';
 import NotFound from '../notFound/NotFound';
 
 const Main = () => (
-  <Switch>
-    <Route exact path={PATHS.DEFAULT} component={null} />
-    <Route path={`${PATHS.MOVIE}/:name`} component={FilmDescription} />
-    <Route
-      path={PATHS.MOVIES}
-      render={() => (
-        <div>
-          <SortResults />
-          <FilmsGallery />
-        </div>
-      )}
-    />
-    <Route path={PATHS.NOTFOUND} component={NotFound} />
-    <Redirect from={PATHS.RESTURLS} to={PATHS.NOTFOUND} />
-  </Switch>
+  <main>
+    <Switch>
+      <Route exact path={PATHS.DEFAULT} component={null} />
+      <Route path={`${PATHS.MOVIE}/:name`} component={FilmDescription} />
+      <Route
+        path={PATHS.MOVIES}
+        render={() => (
+          <div>
+            <SortResults />
+            <FilmsGallery />
+          </div>
+        )}
+      />
+      <Route path={PATHS.NOTFOUND} component={NotFound} />
+      <Redirect from={PATHS.RESTURLS} to={PATHS.NOTFOUND} />
+    </Switch>
+  </main>
 );
 
 export default Main;

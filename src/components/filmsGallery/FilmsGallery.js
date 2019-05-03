@@ -13,7 +13,7 @@ import { PATHS } from "../../helpers/constants";
 export const FilmsGallery = ({movies, chooseFilm}) => {
   if(!movies){return null}
 
-  const chooseFilmCallback = (movie) => {chooseFilm(movie)};
+  const chooseFilmCallback = (movie) => () => {chooseFilm(movie)};
 
   return (
     <div className="film-gallery">
@@ -26,7 +26,7 @@ export const FilmsGallery = ({movies, chooseFilm}) => {
               title='Show Description'
               disabled={false}
               btnClass='btn--primary'
-              callback={chooseFilmCallback.bind(null, movie)}
+              callback={chooseFilmCallback(movie)}
             />
           </NavLink>
         </div>

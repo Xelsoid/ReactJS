@@ -1,19 +1,9 @@
 const merge = require('webpack-merge');
-const developmentConfig = require('./webpack/webpack.dev.config');
-const productionConfig = require('./webpack/webpack.prod.config');
-const commonConfig = require('./webpack/webpack.common.config');
+const clientConfigImport = require('./webpack/webpack.config.client');
+const serverConfigImport = require('./webpack/webpack.config.server');
+const commonConfig = require('./webpack/webpack.config.common');
 
-module.exports = () => {
-  if (process.env.NODE_ENV === 'development') {
-    return merge([
-      commonConfig(),
-      developmentConfig(),
-    ])
-  }
-  if (process.env.NODE_ENV === 'production') {
-    return merge([
-      commonConfig(),
-      productionConfig()
-    ])
-  }
-};
+const clientConfig = merge([commonConfig(), clientConfigImport()]);
+const serverConfig = merge([commonConfig(), serverConfigImport()]);
+
+module.exports = [clientConfig, serverConfig];

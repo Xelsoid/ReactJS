@@ -2,41 +2,34 @@ const express = require('express');
 const path = require('path');
 
 const PORT = 9090;
-const PUBLIC_PATH = __dirname + '/dist';
+const PUBLIC_PATH = __dirname + '/public';
 const app = express();
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 if (isDevelopment) {
   const webpack = require('webpack');
+  const webpackDevMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddleware = require('webpack-hot-middleware');
+  const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
   const webpackConfig = require('./webpack.config');
-  const compiler = webpack(webpackConfig());
-  app.use(require('webpack-dev-middleware')(compiler, {
+  const compiler = webpack(webpackConfig);
+  app.use(webpackDevMiddleware(compiler, {
     historyApiFallback: true,
     hot: true,
     stats: {
       colors: true
     }
   }));
-  app.use(require('webpack-hot-middleware')(compiler));
-  app.use('*', (req, res, next) => {
-    const filename = path.join(compiler.outputPath, 'index.html');
-    compiler.outputFileSystem.readFile(filename, (err, result) => {
-      if (err) {
-        return next(err);
-      }
-      res.set('content-type', 'text/html');
-      res.send(result);
-      res.end();
-    });
-  });
-} else {
-  app.use(express.static(PUBLIC_PATH));
-}
+  app.use(webpackHotMiddleware(compiler.compilers.find(c => c.name === 'client')));
+  app.use(webpackHotServerMiddleware(compiler));
 
-app.all("*", function (req, res) {
-  res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'));
-});
+} else {
+  const serverRenderer = require(PUBLIC_PATH+'/js/serverRenderer').default;
+
+  app.use(express.static('public'));
+  app.use(serverRenderer());
+}
 
 app.listen(PORT, function () {
   console.log('Listening on port ' + PORT + '...');

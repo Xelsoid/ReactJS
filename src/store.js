@@ -10,8 +10,5 @@ const enhancer = composeEnhancers(applyMiddleware(thunk));
 
 export default (storeInitialState) => {
   const store = createStore(allReducers, storeInitialState, enhancer);
-  store.subscribe(() => {
-    localStorage.setItem('reduxState', JSON.stringify(store.getState()));
-  });
   return store;
 };

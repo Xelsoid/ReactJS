@@ -5,7 +5,7 @@ import { StaticRouter } from "react-router-dom";
 import App from './App';
 import configureStore from './store';
 
-function renderHTML(html) {
+function renderHTML(html, preloadedState) {
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -19,6 +19,9 @@ function renderHTML(html) {
       </head>
       <body>
         <div id="rootContainer">${html}</div>
+          <script>
+            window.PRELOADED_STATE = ${JSON.stringify(preloadedState).replace(/</g, '\\\u003c')}
+          </script>
         <script src="/js/main.js"></script>
       </body>
     </html>
@@ -28,14 +31,19 @@ function renderHTML(html) {
 export default function serverRenderer() {
   return (req, res) => {
     const context = {};
-    const storeInitialState = {};
-    const htmlString = renderToString(
-      <App
-        Router={StaticRouter}
-        location={req.url}
-        context={context}
-        store={configureStore(storeInitialState)}
-      />);
+    const store = configureStore();
+
+    const renderApp = () => {
+      return (
+        <App
+          Router={StaticRouter}
+          location={req.url}
+          context={context}
+          store={store}
+        />
+    )};
+
+    renderToString(renderApp());
 
     if (context.url) {
       res.writeHead(302, {
@@ -45,6 +53,9 @@ export default function serverRenderer() {
       return;
     }
 
-    res.send(renderHTML(htmlString));
+    const htmlString = renderToString(renderApp());
+    const preLoadedState = store.getState();
+
+    res.send(renderHTML(htmlString, preLoadedState));
   };
 }

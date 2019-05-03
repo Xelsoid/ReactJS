@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
-import configureStore from './store';
 
 import App from './App';
+import configureStore from './store';
 
-const persistedState = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : {};
-
-ReactDOM.hydrate(<App Router={BrowserRouter} store={configureStore(persistedState)} />, document.getElementById('rootContainer'));
+ReactDOM.hydrate(
+  <App
+    Router={BrowserRouter}
+    store={configureStore(window.PRELOADED_STATE)}
+  />,
+  document.getElementById('rootContainer')
+);

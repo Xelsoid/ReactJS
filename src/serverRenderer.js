@@ -5,7 +5,7 @@ import { StaticRouter } from "react-router-dom";
 import App from './App';
 import configureStore from './store';
 
-function renderHTML(html, preloadedState) {
+function renderHTML(html, preLoadedState) {
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -20,7 +20,7 @@ function renderHTML(html, preloadedState) {
       <body>
         <div id="rootContainer">${html}</div>
           <script>
-            window.PRELOADED_STATE = ${JSON.stringify(preloadedState).replace(/</g, '\\\u003c')}
+            window.PRELOADED_STATE = ${JSON.stringify(preLoadedState).replace(/</g, '\\\u003c')}
           </script>
         <script src="/js/main.js"></script>
       </body>
@@ -43,19 +43,23 @@ export default function serverRenderer() {
         />
     )};
 
+    store.runSaga().done.then(() => {
+      const htmlString = renderToString(renderApp());
+
+      // context.url will contain the URL to redirect to if a <Redirect> was used
+      if (context.url) {
+        res.writeHead(302, {
+          Location: context.url,
+        });
+        res.end();
+        return;
+      }
+      const preLoadedState = store.getState();
+
+      res.send(renderHTML(htmlString, preLoadedState));
+    });
+
     renderToString(renderApp());
-
-    if (context.url) {
-      res.writeHead(302, {
-        Location: context.url,
-      });
-      res.end();
-      return;
-    }
-
-    const htmlString = renderToString(renderApp());
-    const preLoadedState = store.getState();
-
-    res.send(renderHTML(htmlString, preLoadedState));
+    store.close();
   };
 }

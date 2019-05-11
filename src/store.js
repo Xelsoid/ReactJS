@@ -13,7 +13,6 @@ const composeEnhancers =
 
 const enhancer = composeEnhancers(applyMiddleware(sagaMiddleware));
 
-
 export default (storeInitialState) => {
   const store = createStore(allReducers, storeInitialState, enhancer);
 

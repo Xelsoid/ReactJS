@@ -8,7 +8,9 @@ import './header.scss';
 import Logo from '../logo/Logo';
 import Search from '../search/Search';
 import Button from '../button/Button';
-import { fetchData } from '../../helpers/utils'
+import { fetchData } from '../../helpers/utils';
+import { fetchedDataRequest } from '../../actions/actions';
+import { fetchFilmsAsync } from '../../saga';
 import { PATHS } from "../../helpers/constants";
 
 class Header extends React.Component {
@@ -18,6 +20,10 @@ class Header extends React.Component {
       searchBy: '',
       search: '',
     };
+  }
+
+  componentWillMount() {
+    this.fetchDataFromServerCallBack()
   }
 
   componentDidMount() {
@@ -84,7 +90,7 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({fetchDataFromServer: (search, searchBy) => fetchData(search, searchBy)}, dispatch)
+  return bindActionCreators({fetchDataFromServer: (search, searchBy) => fetchedDataRequest(search, searchBy)}, dispatch)
 }
 
 Header.defaultProps = {

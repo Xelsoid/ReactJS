@@ -28,10 +28,10 @@ function renderHTML(html, preLoadedState) {
   `;
 }
 
-export default function serverRenderer() {
+const serverRenderer = () => {
   return (req, res) => {
-    const context = {};
     const store = configureStore();
+    const context = {};
 
     const renderApp = () => {
       return (
@@ -43,7 +43,7 @@ export default function serverRenderer() {
         />
     )};
 
-    store.runSaga().done.then(() => {
+    store.runSaga().toPromise().then(() => {
       const htmlString = renderToString(renderApp());
 
       // context.url will contain the URL to redirect to if a <Redirect> was used
@@ -62,4 +62,6 @@ export default function serverRenderer() {
     renderToString(renderApp());
     store.close();
   };
-}
+};
+
+export default serverRenderer;

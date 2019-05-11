@@ -5,8 +5,12 @@ export const chooseFilm = (film) => ({
   payload: film,
 });
 
+export const fetchedDataRequest = () => ({
+  type: ACTIONS.FETCH_DATA_REQUEST,
+});
+
 export const fetchedDataSuccess = (films) => ({
-  type: ACTIONS.FETCH_DATA,
+  type: ACTIONS.FETCH_DATA_SUCCESS,
   payload: {films: films},
 });
 

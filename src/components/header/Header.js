@@ -26,12 +26,6 @@ class Header extends React.Component {
     this.fetchDataFromServerCallBack()
   }
 
-  componentDidMount() {
-    if(window.location.search) {
-      this.fetchDataFromServerCallBack()
-    }
-  }
-
   collectInputData = (evt) => {
     this.setState({search: evt.target.value})
   };

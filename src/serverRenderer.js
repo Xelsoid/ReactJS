@@ -47,13 +47,13 @@ const serverRenderer = () => {
       const htmlString = renderToString(renderApp());
 
       // context.url will contain the URL to redirect to if a <Redirect> was used
-      if (context.url) {
-        res.writeHead(302, {
-          Location: context.url,
-        });
-        res.end();
-        return;
-      }
+      // if (context.url) {
+      //   res.writeHead(302, {
+      //     Location: context.url,
+      //   });
+      //   res.end();
+      //   return;
+      // }
       const preLoadedState = store.getState();
 
       res.send(renderHTML(htmlString, preLoadedState));

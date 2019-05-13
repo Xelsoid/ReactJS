@@ -1,26 +1,3 @@
-import { fetchedDataSuccess } from "../actions/actions";
-import { PATHS } from "./constants";
-
-export const fetchData = (search, searchBy) => {
-  const baseURL = 'https://reactjs-cdp.herokuapp.com';
-  let searchPart = `/movies?search=${search}&searchBy=${searchBy}`;
-
-  // if(!search && !searchBy) {
-  //   searchPart = window.location.pathname + window.location.search;
-  // } else {
-  //   searchPart = `/movies?search=${search}&searchBy=${searchBy}`;
-  // }
-
-  const finalURL =`${baseURL}${searchPart}`;
-
-  return (dispatch) => {
-    fetch(finalURL)
-      .then(response => response.json())
-      .then(films => dispatch(fetchedDataSuccess(films, searchPart)))
-      .catch(() => {window.location.href = PATHS.NOTFOUND;})
-  }
-};
-
 export const sortMoviesByRating = (arr, isSortASC) => {
   if(isSortASC) {
     return arr.sort((a,b) => (a.vote_average - b.vote_average))

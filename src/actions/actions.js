@@ -5,8 +5,9 @@ export const chooseFilm = (film) => ({
   payload: film,
 });
 
-export const fetchedDataRequest = () => ({
+export const fetchDataRequest = (search) => ({
   type: ACTIONS.FETCH_DATA_REQUEST,
+  payload: {search},
 });
 
 export const fetchedDataSuccess = (films) => ({

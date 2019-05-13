@@ -8,9 +8,7 @@ import './header.scss';
 import Logo from '../logo/Logo';
 import Search from '../search/Search';
 import Button from '../button/Button';
-import { fetchData } from '../../helpers/utils';
-import { fetchedDataRequest } from '../../actions/actions';
-import { fetchFilmsAsync } from '../../saga';
+import { fetchDataRequest } from '../../actions/actions';
 import { PATHS } from "../../helpers/constants";
 
 class Header extends React.Component {
@@ -23,8 +21,20 @@ class Header extends React.Component {
   }
 
   componentWillMount() {
-    this.fetchDataFromServerCallBack()
+    const { fetchDataFromServer } = this.props;
+    fetchDataFromServer();
   }
+
+  componentDidMount() {
+    const { fetchDataFromServer } = this.props;
+    if(window && window.location.search) {
+      fetchDataFromServer(window.location.search);
+    }
+  }
+
+  concatenateSearchString = (search, searchBy) => {
+      return `?search=${search}&searchBy=${searchBy}`;
+  };
 
   collectInputData = (evt) => {
     this.setState({search: evt.target.value})
@@ -33,7 +43,7 @@ class Header extends React.Component {
   fetchDataFromServerCallBack = () => {
     const { fetchDataFromServer } = this.props;
     const { search, searchBy } = this.state;
-    fetchDataFromServer(search, searchBy)
+    fetchDataFromServer(this.concatenateSearchString(search, searchBy))
   };
 
   render() {
@@ -84,7 +94,7 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({fetchDataFromServer: (search, searchBy) => fetchedDataRequest(search, searchBy)}, dispatch)
+  return bindActionCreators({fetchDataFromServer: (search, searchBy) => fetchDataRequest(search, searchBy)}, dispatch)
 }
 
 Header.defaultProps = {

@@ -1,4 +1,4 @@
-import { chooseFilm, fetchedDataSuccess, sortByDate, sortByRating } from './actions';
+import { chooseFilm, fetchDataRequest, fetchedDataSuccess, sortByDate, sortByRating } from './actions';
 import { ACTIONS } from '../helpers/constants';
 import DATA from '../mockedData/MOCKED_DATA'
 
@@ -11,10 +11,18 @@ describe('actions', () => {
       });
   });
 
-  it('action FETCH_DATA', () => {
+  it('action FETCH_DATA_REQUEST', () => {
+    expect(fetchDataRequest('search=&searchBy=')).toEqual(
+      {
+        type: ACTIONS.FETCH_DATA_REQUEST,
+        payload: { search: 'search=&searchBy='},
+      });
+  });
+
+  it('action FETCH_DATA_SUCCESS', () => {
     expect(fetchedDataSuccess(DATA.data)).toEqual(
       {
-        type: ACTIONS.FETCH_DATA,
+        type: ACTIONS.FETCH_DATA_SUCCESS,
         payload: {films: DATA.data}
       });
   });

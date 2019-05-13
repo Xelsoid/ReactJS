@@ -21,7 +21,7 @@ const Main = () => (
         )}
       />
       <Route path={PATHS.NOTFOUND} component={NotFound} />
-      <Redirect from={PATHS.DEFAULT} to={PATHS.MOVIES} />
+      <Redirect exact from={PATHS.DEFAULT} to={PATHS.MOVIES} />
       <Redirect from={PATHS.RESTURLS} to={PATHS.NOTFOUND} />
     </Switch>
   </main>

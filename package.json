@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "reactJs application",
   "scripts": {
-    "build-dev": "set NODE_ENV=development&& node server.js",
-    "build-prod": "set NODE_ENV=production&& webpack",
+    "start-dev": "cross-env NODE_ENV=development node ./server",
+    "build": "cross-env NODE_ENV=production webpack --config ./webpack",
+    "start-prod": "cross-env NODE_ENV=production node ./server",
     "test": "jest",
     "test:updateSnapshots": "jest --updateSnapshot",
     "cypress": "cypress open",

@@ -20,10 +20,10 @@ class Header extends React.Component {
     };
   }
 
-  componentWillMount() {
-    const { fetchDataFromServer } = this.props;
-    fetchDataFromServer();
-  }
+  // componentWillMount() {
+  //   const { fetchDataFromServer } = this.props;
+  //   fetchDataFromServer();
+  // }
 
   componentDidMount() {
     const { fetchDataFromServer } = this.props;
@@ -94,7 +94,7 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({fetchDataFromServer: (search, searchBy) => fetchDataRequest(search, searchBy)}, dispatch)
+  return bindActionCreators({fetchDataFromServer: (search) => fetchDataRequest(search)}, dispatch)
 }
 
 Header.defaultProps = {

@@ -5,7 +5,6 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 
 module.exports = () => {
   return {
-    // context: path.resolve(__dirname, '../src'),
     mode: process.env.NODE_ENV,
 
     output: {

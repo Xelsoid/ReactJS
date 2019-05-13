@@ -10,7 +10,6 @@ import NotFound from '../notFound/NotFound';
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path={PATHS.DEFAULT} component={null} />
       <Route path={`${PATHS.MOVIE}/:name`} component={FilmDescription} />
       <Route
         path={PATHS.MOVIES}
@@ -22,6 +21,7 @@ const Main = () => (
         )}
       />
       <Route path={PATHS.NOTFOUND} component={NotFound} />
+      <Redirect from={PATHS.DEFAULT} to={PATHS.MOVIES} />
       <Redirect from={PATHS.RESTURLS} to={PATHS.NOTFOUND} />
     </Switch>
   </main>

@@ -12,24 +12,13 @@ import { fetchDataRequest } from '../../actions/actions';
 import { PATHS } from "../../helpers/constants";
 
 class Header extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
+    this.props = props;
     this.state = {
       searchBy: '',
       search: '',
     };
-  }
-
-  // componentWillMount() {
-  //   const { fetchDataFromServer } = this.props;
-  //   fetchDataFromServer();
-  // }
-
-  componentDidMount() {
-    const { fetchDataFromServer } = this.props;
-    if(window && window.location.search) {
-      fetchDataFromServer(window.location.search);
-    }
   }
 
   concatenateSearchString = (search, searchBy) => {

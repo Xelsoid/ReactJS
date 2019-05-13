@@ -6,7 +6,7 @@ export function* fetchFilmsAsync(action) {
   const baseUrl = 'https://reactjs-cdp.herokuapp.com/movies';
   let url;
 
-  if(action.payload.search) {
+  if(action && action.payload.search) {
     url = baseUrl + action.payload.search;
   } else {
     url = baseUrl;

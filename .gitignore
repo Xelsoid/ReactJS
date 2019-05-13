@@ -9,6 +9,7 @@
 
 # production
 /production*
+/public*
 
 # development
 /build*

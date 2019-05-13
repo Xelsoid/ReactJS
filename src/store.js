@@ -2,7 +2,7 @@ import { applyMiddleware, compose, createStore } from "redux";
 import createSagaMiddleware, { END } from 'redux-saga';
 import allReducers from "./reducers/rootReducers";
 
-import { filmsSaga } from "./saga";
+import { fetchFilmsAsync, filmsSaga } from "./saga";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -17,7 +17,7 @@ export default (storeInitialState) => {
   const store = createStore(allReducers, storeInitialState, enhancer);
 
   sagaMiddleware.run(filmsSaga);
-  store.runSaga = () => sagaMiddleware.run(filmsSaga);
+  store.runSaga = () => sagaMiddleware.run(fetchFilmsAsync);
   store.close = () => store.dispatch(END);
 
   return store;

@@ -33,13 +33,13 @@ const FilmDescription = (props) => {
           {overview}
         </p>
       </div>
-        <Button
-          id='closeDescription'
-          title='Close description'
-          disabled={false}
-          btnClass='btn--primary'
-          callback={goBackCallback}
-        />
+      <Button
+        id='closeDescription'
+        title='Close description'
+        disabled={false}
+        btnClass='btn--primary'
+        callback={goBackCallback}
+      />
     </div>
   );
 };

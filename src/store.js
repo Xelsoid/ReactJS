@@ -17,7 +17,7 @@ export default (storeInitialState) => {
   const store = createStore(allReducers, storeInitialState, enhancer);
 
   sagaMiddleware.run(filmsSaga);
-  store.runSaga = () => sagaMiddleware.run(fetchFilmsAsync);
+  store.runSaga = url => sagaMiddleware.run(fetchFilmsAsync, null, url);
   store.close = () => store.dispatch(END);
 
   return store;

@@ -2,14 +2,16 @@ import { takeLatest, call, put, all } from 'redux-saga/effects';
 import { fetchedDataSuccess } from "./actions/actions";
 import { ACTIONS } from './helpers/constants';
 
-export function* fetchFilmsAsync(action) {
-  const baseUrl = 'https://reactjs-cdp.herokuapp.com/movies';
+export function* fetchFilmsAsync(action, context) {
+  const baseUrl = 'https://reactjs-cdp.herokuapp.com';
   let url;
 
-  if(action && action.payload.search) {
-    url = baseUrl + action.payload.search;
+  if (action && action.payload.search) {
+    url = `${baseUrl}/movies${action.payload.search}`;
+  } else if (context) {
+    url = `${baseUrl}${context}`;
   } else {
-    url = baseUrl;
+    url = `${baseUrl}/movies`;
   }
 
   const response = yield call(fetch, url);

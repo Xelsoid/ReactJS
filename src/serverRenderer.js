@@ -43,17 +43,21 @@ const serverRenderer = () => {
         />
     )};
 
-    store.runSaga().toPromise().then(() => {
-      const htmlString = renderToString(renderApp());
+    const url = req.url.includes('/movies')
+      ? req.url
+      : null;
 
+    store.runSaga(url).toPromise().then(() => {
+      const htmlString = renderToString(renderApp());
+     
       // context.url will contain the URL to redirect to if a <Redirect> was used
-      // if (context.url) {
-      //   res.writeHead(302, {
-      //     Location: context.url,
-      //   });
-      //   res.end();
-      //   return;
-      // }
+      if (context.url) {
+        res.writeHead(302, {
+          Location: context.url,
+        });
+        res.end();
+        return;
+      }
       const preLoadedState = store.getState();
 
       res.send(renderHTML(htmlString, preLoadedState));

@@ -14,25 +14,25 @@ app
 
     server.get('/movie', (req, res) => {
       const actualPage = '/movie';
-      const queryParams = { title: req.params.id }
+      const queryParams = { search: req.params.id };
       app.render(req, res, actualPage, queryParams)
     });
 
     server.get('/movies', (req, res) => {
       const actualPage = '/index';
-      const queryParams = { title: req.params.id }
+      const queryParams = { search: req._parsedUrl.search };
       app.render(req, res, actualPage, queryParams)
     });
 
     server.get('/', (req, res) => {
       const actualPage = '/index';
-      const queryParams = { title: req.params.id }
+      const queryParams = { title: req.params.id };
       app.render(req, res, actualPage, queryParams)
     });
 
     server.get('/*', (req, res) => {
       const actualPage = '/not-found';
-      const queryParams = { title: req.params.id }
+      const queryParams = { title: req.params.id };
       app.render(req, res, actualPage, queryParams)
     });
 

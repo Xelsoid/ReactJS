@@ -1,35 +1,51 @@
 const express = require('express');
+const next = require('next');
 
 const PORT = 9090;
-const PUBLIC_PATH = __dirname + '/public';
-const app = express();
 
-const isDevelopment = process.env.NODE_ENV === 'development';
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({ dev });
+const handle = app.getRequestHandler();
 
-if (isDevelopment) {
-  const webpack = require('webpack');
-  const webpackDevMiddleware = require('webpack-dev-middleware');
-  const webpackHotMiddleware = require('webpack-hot-middleware');
-  const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
-  const webpackConfig = require('./webpack/index');
-  const compiler = webpack(webpackConfig);
-  app.use(webpackDevMiddleware(compiler, {
-    historyApiFallback: true,
-    hot: true,
-    stats: {
-      colors: true
-    }
-  }));
-  app.use(webpackHotMiddleware(compiler.compilers.find(c => c.name === 'client')));
-  app.use(webpackHotServerMiddleware(compiler));
+app
+  .prepare()
+  .then(() => {
+    const server = express();
 
-} else {
-  const serverRenderer = require(PUBLIC_PATH+'/js/serverRenderer').default;
+    server.get('/movie', (req, res) => {
+      const actualPage = '/movie';
+      const queryParams = { title: req.params.id }
+      app.render(req, res, actualPage, queryParams)
+    });
 
-  app.use(express.static(PUBLIC_PATH));
-  app.use(serverRenderer());
-}
+    server.get('/movies', (req, res) => {
+      const actualPage = '/index';
+      const queryParams = { title: req.params.id }
+      app.render(req, res, actualPage, queryParams)
+    });
 
-app.listen(PORT, function () {
-  console.log('Listening on port ' + PORT + '...');
-});
+    server.get('/', (req, res) => {
+      const actualPage = '/index';
+      const queryParams = { title: req.params.id }
+      app.render(req, res, actualPage, queryParams)
+    });
+
+    server.get('/*', (req, res) => {
+      const actualPage = '/not-found';
+      const queryParams = { title: req.params.id }
+      app.render(req, res, actualPage, queryParams)
+    });
+
+    server.get('*', (req, res) => {
+      return handle(req, res)
+    });
+
+    server.listen(PORT, err => {
+      if (err) throw err;
+      console.log(`> Ready on http://localhost:${PORT}`)
+    })
+  })
+  .catch(ex => {
+    console.error(ex.stack);
+    process.exit(1)
+  });

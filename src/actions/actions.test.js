@@ -1,4 +1,4 @@
-import { chooseFilm, fetchDataRequest, fetchedDataSuccess, sortByDate, sortByRating } from './actions';
+import { chooseFilm, fetchedDataSuccess, sortByDate, sortByRating } from './actions';
 import { ACTIONS } from '../helpers/constants';
 import DATA from '../mockedData/MOCKED_DATA'
 
@@ -8,14 +8,6 @@ describe('actions', () => {
       {
         type: ACTIONS.FILM_SELECTED,
         payload: DATA.data[0]
-      });
-  });
-
-  it('action FETCH_DATA_REQUEST', () => {
-    expect(fetchDataRequest('search=&searchBy=')).toEqual(
-      {
-        type: ACTIONS.FETCH_DATA_REQUEST,
-        payload: { search: 'search=&searchBy='},
       });
   });
 

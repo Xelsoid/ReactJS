@@ -13,3 +13,5 @@ export const sortMoviesByDate = (arr, isSortASC) => {
     return arr.sort((a,b) => (new Date(b.release_date) - new Date(a.release_date)))
   }
 };
+
+export const removeSpecialSymbols = (string) => {return string.replace(/[^A-Z0-9]/ig, "_")};

@@ -2,13 +2,12 @@ import PropTypes from "prop-types";
 import React from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
+import Link from 'next/link';
 
 import './filmsGallery.scss';
 import FilmsGalleryCard from './FilmsGalleryCard';
-import Button from '../button/Button';
 import { chooseFilm } from '../../actions/actions';
-import { PATHS } from "../../helpers/constants";
+import { removeSpecialSymbols } from "../../helpers/utils";
 
 export const FilmsGallery = ({movies, chooseFilm}) => {
   if(!movies){return null}
@@ -20,15 +19,9 @@ export const FilmsGallery = ({movies, chooseFilm}) => {
       {movies.map(movie => (
         <div key={movie.id} className="film-gallery--column">
           <FilmsGalleryCard film={movie} />
-          <NavLink to={`${PATHS.MOVIE}/${movie.title}`}>
-            <Button
-              id={movie.id}
-              title='Show Description'
-              disabled={false}
-              btnClass='btn--primary'
-              callback={chooseFilmCallback(movie)}
-            />
-          </NavLink>
+          <Link as={`/movie/${removeSpecialSymbols(movie.title)}`} href="/movie">
+            <button className="btn btn--primary" type="button" onClick={chooseFilmCallback(movie)}>Choose film</button>
+          </Link>
         </div>
       ))}
     </div>

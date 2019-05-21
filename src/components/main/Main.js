@@ -1,30 +1,21 @@
 import React from 'react';
-import { Switch, Route, Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
 
-import { PATHS } from '../../helpers/constants';
-import SortResults from '../sortResults/SortResults';
-import FilmsGallery from '../filmsGallery/FilmsGallery';
-import FilmDescription from '../filmDescription/FilmDescription';
-import NotFound from '../notFound/NotFound';
+const Main = (props) => {
+  const {children} = props;
+  return(
+    <main>
+      {children}
+    </main>
+  )
+};
 
-const Main = () => (
-  <main>
-    <Switch>
-      <Route path={`${PATHS.MOVIE}/:name`} component={FilmDescription} />
-      <Route
-        path={PATHS.MOVIES}
-        render={() => (
-          <div>
-            <SortResults />
-            <FilmsGallery />
-          </div>
-        )}
-      />
-      <Route path={PATHS.NOTFOUND} component={NotFound} />
-      <Redirect exact from={PATHS.DEFAULT} to={PATHS.MOVIES} />
-      <Redirect from={PATHS.RESTURLS} to={PATHS.NOTFOUND} />
-    </Switch>
-  </main>
-);
+Main.defaultProps = {
+  children: null,
+};
+
+Main.propTypes = {
+  children: PropTypes.instanceOf(Object),
+};
 
 export default Main;

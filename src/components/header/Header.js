@@ -2,21 +2,20 @@ import PropTypes from "prop-types";
 import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { NavLink } from "react-router-dom";
+import Link from 'next/link';
 
 import './header.scss';
 import Logo from '../logo/Logo';
 import Search from '../search/Search';
 import Button from '../button/Button';
-import { fetchDataRequest } from '../../actions/actions';
-import { PATHS } from "../../helpers/constants";
+import { fetchedDataSuccess } from '../../actions/actions';
 
 class Header extends React.Component {
   constructor(props) {
     super();
     this.props = props;
     this.state = {
-      searchBy: '',
+      searchBy: 'title',
       search: '',
     };
   }
@@ -30,13 +29,20 @@ class Header extends React.Component {
   };
 
   fetchDataFromServerCallBack = () => {
-    const { fetchDataFromServer } = this.props;
+    const { fetchedDataSuccess } = this.props;
     const { search, searchBy } = this.state;
-    fetchDataFromServer(this.concatenateSearchString(search, searchBy))
+
+    const baseURL = 'https://reactjs-cdp.herokuapp.com/movies';
+    const searchParams = this.concatenateSearchString(search, searchBy);
+    const URL = baseURL + searchParams;
+
+    fetch(URL)
+      .then(response => response.json())
+      .then(films => fetchedDataSuccess(films))
   };
 
   render() {
-    const { search, searchBy } = this.state;
+    const { search } = this.state;
 
     return (
       <header className="header">
@@ -45,15 +51,15 @@ class Header extends React.Component {
           value={search}
           callback={this.collectInputData}
         />
-        <NavLink to={`${PATHS.MOVIES}?search=${search}&searchBy=${searchBy}`}>
-          <Button
-            id='btnSearch'
-            title='Search'
-            disabled={false}
-            btnClass='btn--primary'
-            callback={this.fetchDataFromServerCallBack}
-          />
-        </NavLink>
+        <Link as="/movies" href="/">
+          <button
+            className="btn btn--primary"
+            type="button"
+            onClick={this.fetchDataFromServerCallBack}
+          >
+            Search
+          </button>
+        </Link>
         <div>
           <span>Searched by:</span>
           <Button
@@ -83,15 +89,15 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({fetchDataFromServer: (search) => fetchDataRequest(search)}, dispatch)
+  return bindActionCreators({fetchedDataSuccess: (films) => fetchedDataSuccess(films)}, dispatch)
 }
 
 Header.defaultProps = {
-  fetchDataFromServer: null,
+  fetchedDataSuccess: null,
 };
 
 Header.propTypes = {
-  fetchDataFromServer: PropTypes.func,
+  fetchedDataSuccess: PropTypes.func,
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(Header);

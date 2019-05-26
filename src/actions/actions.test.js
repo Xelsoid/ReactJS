@@ -11,10 +11,10 @@ describe('actions', () => {
       });
   });
 
-  it('action FETCH_DATA', () => {
+  it('action FETCH_DATA_SUCCESS', () => {
     expect(fetchedDataSuccess(DATA.data)).toEqual(
       {
-        type: ACTIONS.FETCH_DATA,
+        type: ACTIONS.FETCH_DATA_SUCCESS,
         payload: {films: DATA.data}
       });
   });

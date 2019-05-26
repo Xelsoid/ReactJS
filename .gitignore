@@ -9,8 +9,10 @@
 
 # production
 /production*
+/public*
 
 # development
 /build*
+/.next
 
 .idea

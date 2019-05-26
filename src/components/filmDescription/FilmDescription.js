@@ -1,9 +1,7 @@
 import PropTypes from "prop-types";
 import React from 'react';
 import {connect} from "react-redux";
-import {NavLink} from "react-router-dom";
 
-import { PATHS } from "../../helpers/constants";
 import './filmDescription.scss';
 import Button from "../button/Button";
 
@@ -12,6 +10,10 @@ const FilmDescription = (props) => {
   if(!selectedFilm){return null}
 
   const {poster_path, title, tagline, release_date, runtime, overview} = selectedFilm;
+
+  const goBackCallback = () => {
+    window.history.back()
+  };
 
   return (
     <div className="film-description clearfix">
@@ -31,14 +33,13 @@ const FilmDescription = (props) => {
           {overview}
         </p>
       </div>
-      <NavLink to={PATHS.DEFAULT}>
-        <Button
-          id='closeDescription'
-          title='Close description'
-          disabled={false}
-          btnClass='btn--primary'
-        />
-      </NavLink>
+      <Button
+        id='closeDescription'
+        title='Close description'
+        disabled={false}
+        btnClass='btn--primary'
+        callback={goBackCallback}
+      />
     </div>
   );
 };

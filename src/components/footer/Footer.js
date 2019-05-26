@@ -3,9 +3,9 @@ import React from 'react';
 import './footer.scss';
 
 const Footer = () => (
-  <div className="footer">
+  <footer className="footer">
     <span>&copy; All rights reserved</span>
-  </div>
+  </footer>
 );
 
 export default Footer;

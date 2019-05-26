@@ -1,43 +1,51 @@
 const express = require('express');
-const path = require('path');
+const next = require('next');
 
 const PORT = 9090;
-const PUBLIC_PATH = __dirname + '/dist';
-const app = express();
 
-const isDevelopment = process.env.NODE_ENV === 'development';
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({ dev });
+const handle = app.getRequestHandler();
 
-if (isDevelopment) {
-  const webpack = require('webpack');
-  const webpackConfig = require('./webpack.config');
-  const compiler = webpack(webpackConfig());
-  app.use(require('webpack-dev-middleware')(compiler, {
-    historyApiFallback: true,
-    hot: true,
-    stats: {
-      colors: true
-    }
-  }));
-  app.use(require('webpack-hot-middleware')(compiler));
-  app.use('*', (req, res, next) => {
-    const filename = path.join(compiler.outputPath, 'index.html');
-    compiler.outputFileSystem.readFile(filename, (err, result) => {
-      if (err) {
-        return next(err);
-      }
-      res.set('content-type', 'text/html');
-      res.send(result);
-      res.end();
+app
+  .prepare()
+  .then(() => {
+    const server = express();
+
+    server.get('/movie', (req, res) => {
+      const actualPage = '/movie';
+      const queryParams = { search: req.params.id };
+      app.render(req, res, actualPage, queryParams)
     });
+
+    server.get('/movies', (req, res) => {
+      const actualPage = '/index';
+      const queryParams = { search: req._parsedUrl.search };
+      app.render(req, res, actualPage, queryParams)
+    });
+
+    server.get('/', (req, res) => {
+      const actualPage = '/index';
+      const queryParams = { title: req.params.id };
+      app.render(req, res, actualPage, queryParams)
+    });
+
+    server.get('/*', (req, res) => {
+      const actualPage = '/not-found';
+      const queryParams = { title: req.params.id };
+      app.render(req, res, actualPage, queryParams)
+    });
+
+    server.get('*', (req, res) => {
+      return handle(req, res)
+    });
+
+    server.listen(PORT, err => {
+      if (err) throw err;
+      console.log(`> Ready on http://localhost:${PORT}`)
+    })
+  })
+  .catch(ex => {
+    console.error(ex.stack);
+    process.exit(1)
   });
-} else {
-  app.use(express.static(PUBLIC_PATH));
-}
-
-app.all("*", function (req, res) {
-  res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'));
-});
-
-app.listen(PORT, function () {
-  console.log('Listening on port ' + PORT + '...');
-});

@@ -11,7 +11,7 @@ const reducer = (state = initialState, action) => {
     case ACTIONS.FILM_SELECTED:
       return { ...state, selectedFilm: action.payload };
 
-    case ACTIONS.FETCH_DATA:
+    case ACTIONS.FETCH_DATA_SUCCESS:
       return { ...state, films: action.payload.films.data};
 
     case ACTIONS.SORT_BY_RATING:

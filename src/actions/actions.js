@@ -6,7 +6,7 @@ export const chooseFilm = (film) => ({
 });
 
 export const fetchedDataSuccess = (films) => ({
-  type: ACTIONS.FETCH_DATA,
+  type: ACTIONS.FETCH_DATA_SUCCESS,
   payload: {films: films},
 });
 

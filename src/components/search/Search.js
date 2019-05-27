@@ -1,9 +1,15 @@
+// @flow
 import React from 'react';
 
 import './search.scss';
-import PropTypes from "prop-types";
 
-const Search = ({callback, value}) => {
+type SearchProps = {
+  callback: Function;
+  value: string;
+};
+
+const Search = (props: SearchProps) => {
+  const {callback, value} = props;
   return (
     <div className="search-box__wrapper">
       <label className="search-box__search-label" htmlFor="searchFilm">
@@ -19,16 +25,6 @@ const Search = ({callback, value}) => {
       />
     </div>
   );
-};
-
-Search.defaultProps = {
-  callback: null,
-  value: ''
-};
-
-Search.propTypes = {
-  callback: PropTypes.func,
-  value: PropTypes.string
 };
 
 export default Search;

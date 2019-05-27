@@ -1,9 +1,19 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import './button.scss';
 
-const Button = ({btnClass, disabled, id, title, callback}) => {
+type ButtonProps = {
+  btnClass: string;
+  disabled: boolean;
+  id: string;
+  title: string;
+  callback: Function;
+}
+
+const Button = (props: ButtonProps) => {
+  const {btnClass, disabled, id, title, callback} = props;
   return (
     <button
       className={`btn ${btnClass}`}
@@ -15,22 +25,6 @@ const Button = ({btnClass, disabled, id, title, callback}) => {
       {title}
     </button>
   );
-};
-
-Button.defaultProps = {
-  btnClass: 'btn--primary',
-  disabled: true,
-  title: 'disabled',
-  callback: null,
-  id: '',
-};
-
-Button.propTypes = {
-  btnClass: PropTypes.string,
-  disabled: PropTypes.bool,
-  title: PropTypes.string,
-  callback: PropTypes.func,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default Button;

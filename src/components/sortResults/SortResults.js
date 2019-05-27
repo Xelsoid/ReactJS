@@ -1,4 +1,5 @@
-import PropTypes from "prop-types";
+// @flow
+
 import React from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
@@ -7,9 +8,20 @@ import Button from '../button/Button';
 import './sortResults.scss';
 import {sortByRating, sortByDate} from '../../actions/actions';
 
-class SortResults extends React.Component {
-  constructor() {
-    super();
+type SortResultsProps = {
+  movies: Object;
+  sortByDate: Function;
+  sortByRating: Function;
+}
+
+type State = {
+  sortingByRating: boolean;
+  sortingByDate: boolean;
+}
+
+class SortResults extends React.Component<SortResultsProps, State> {
+  constructor(props: SortResultsProps) {
+    super(props);
     this.state = {
       sortingByRating: true,
       sortingByDate: true,
@@ -66,17 +78,5 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({sortByDate, sortByRating}, dispatch)
 }
-
-SortResults.defaultProps = {
-  movies: {},
-  sortByDate: null,
-  sortByRating: null,
-};
-
-SortResults.propTypes = {
-  movies: PropTypes.instanceOf(Object),
-  sortByDate: PropTypes.func,
-  sortByRating: PropTypes.func,
-};
 
 export default connect(mapStateToProps, matchDispatchToProps)(SortResults);

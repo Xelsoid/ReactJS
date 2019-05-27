@@ -4,7 +4,8 @@ import fetch from 'isomorphic-unfetch';
 
 import {fetchedDataSuccess} from "../src/actions/actions";
 import App from '../src/App';
-import FilmsGallery from '../src/components/filmsGallery/FilmsGallery'
+import FilmsGallery from '../src/components/filmsGallery/FilmsGallery';
+import SortResults from '../src/components/sortResults/SortResults';
 
 class Page extends Component {
   static async getInitialProps({store, isServer, pathname, query}) {
@@ -30,6 +31,7 @@ class Page extends Component {
   render() {
     return (
       <App>
+        <SortResults />
         <FilmsGallery  />
       </App>
     )

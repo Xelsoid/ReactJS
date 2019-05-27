@@ -1,9 +1,20 @@
+// @flow
+
 import React from 'react';
-import PropTypes from "prop-types";
 
 import './filmsGalleryCard.scss';
 
-const FilmsGalleryCard = ({film}) => {
+type FilmsGalleryCardProps = {
+  film: {
+    title: string;
+    poster_path: string;
+    release_date: string;
+    genres: Array<string>;
+  }
+};
+
+const FilmsGalleryCard = (props: FilmsGalleryCardProps) => {
+  const {film} =  props;
   const {title, poster_path, release_date, genres} = film;
 
   return (
@@ -16,14 +27,6 @@ const FilmsGalleryCard = ({film}) => {
       <small className="film-gallery-card__genre">{genres.map(genre => `${genre} `)}</small>
     </div>
   )
-};
-
-FilmsGalleryCard.defaultProps = {
-  film: null
-};
-
-FilmsGalleryCard.propTypes = {
-  film: PropTypes.instanceOf(Object),
 };
 
 export default FilmsGalleryCard;

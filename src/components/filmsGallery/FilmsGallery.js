@@ -1,4 +1,5 @@
-import PropTypes from "prop-types";
+// @flow
+
 import React from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -9,7 +10,13 @@ import FilmsGalleryCard from './FilmsGalleryCard';
 import { chooseFilm } from '../../actions/actions';
 import { removeSpecialSymbols } from "../../helpers/utils";
 
-export const FilmsGallery = ({movies, chooseFilm}) => {
+type FilmsGalleryProps = {
+  movies: Object;
+  chooseFilm: Object;
+}
+
+export const FilmsGallery = (props: FilmsGalleryProps) => {
+  const {movies, chooseFilm} = props;
   if(!movies){return null}
 
   const chooseFilmCallback = (movie) => () => {chooseFilm(movie)};
@@ -37,15 +44,5 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({chooseFilm}, dispatch)
 }
-
-FilmsGallery.defaultProps = {
-  movies: null,
-  chooseFilm: null
-};
-
-FilmsGallery.propTypes = {
-  movies: PropTypes.instanceOf(Object),
-  chooseFilm: PropTypes.func
-};
 
 export default connect(mapStateToProps, matchDispatchToProps)(FilmsGallery);

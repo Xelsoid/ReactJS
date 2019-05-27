@@ -10,7 +10,8 @@
     "test:updateSnapshots": "jest --updateSnapshot",
     "cypress": "cypress open",
     "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix"
+    "lint:fix": "eslint ./src --fix",
+    "flow": "flow"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "express": "^4.17.0",
+    "flow-bin": "^0.98.1",
     "history": "^4.9.0",
     "identity-obj-proxy": "^3.0.0",
     "isomorphic-fetch": "^2.2.1",
@@ -68,8 +70,10 @@
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
+    "babel-cli": "^6.26.0",
     "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
+    "babel-preset-flow": "^6.23.0",
     "css-loader": "1.0.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",

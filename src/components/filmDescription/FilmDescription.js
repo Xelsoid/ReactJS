@@ -1,11 +1,23 @@
-import PropTypes from "prop-types";
+// @flow
+
 import React from 'react';
 import {connect} from "react-redux";
 
 import './filmDescription.scss';
 import Button from "../button/Button";
 
-const FilmDescription = (props) => {
+type FilmDescriptionProps = {
+  selectedFilm: {
+    poster_path: string;
+    title: string;
+    tagline: string;
+    release_date: number;
+    runtime: number;
+    overview: string;
+  }
+};
+
+const FilmDescription = (props: FilmDescriptionProps) => {
   const {selectedFilm} = props;
   if(!selectedFilm){return null}
 
@@ -49,20 +61,5 @@ function mapStateToProps(state) {
     selectedFilm: state.selectedFilm
   };
 }
-
-FilmDescription.defaultProps = {
-  selectedFilm: null,
-};
-
-FilmDescription.propTypes = {
-  selectedFilm: PropTypes.shape({
-    poster_path: PropTypes.string,
-    title: PropTypes.string,
-    tagline: PropTypes.string,
-    release_date: PropTypes.string,
-    runtime: PropTypes.number,
-    overview: PropTypes.string,
-  }),
-};
 
 export default connect(mapStateToProps)(FilmDescription);

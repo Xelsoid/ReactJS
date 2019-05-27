@@ -1,6 +1,6 @@
+// @flow
 import React from 'react';
 import { hot } from 'react-hot-loader';
-import PropTypes from 'prop-types';
 import 'isomorphic-fetch';
 
 import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
@@ -11,7 +11,11 @@ import Footer from './components/footer/Footer';
 import './styles/reset.css';
 import './styles/styles.scss';
 
-const App = (props) => {
+type AppProps = {
+  children: Object;
+}
+
+const App = (props: AppProps) => {
   const {children} = props;
   return (
     <ErrorBoundary>
@@ -25,14 +29,3 @@ const App = (props) => {
 };
 
 export default hot(module)(App);
-
-App.propTypes = {
-  context: PropTypes.shape({
-    url: PropTypes.string,
-  }),
-  children: PropTypes.instanceOf(Object),
-};
-App.defaultProps = {
-  context: null,
-  children: null
-};

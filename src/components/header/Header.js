@@ -1,4 +1,5 @@
-import PropTypes from "prop-types";
+// @flow
+
 import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -10,9 +11,18 @@ import Search from '../search/Search';
 import Button from '../button/Button';
 import { fetchedDataSuccess } from '../../actions/actions';
 
-class Header extends React.Component {
-  constructor(props) {
-    super();
+type HeaderProps = {
+  fetchedDataSuccess: Function;
+}
+
+type State = {
+  searchBy: string;
+  search: string;
+}
+
+class Header extends React.Component<HeaderProps, State> {
+  constructor(props: HeaderProps) {
+    super(props);
     this.props = props;
     this.state = {
       searchBy: 'title',
@@ -91,13 +101,5 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({fetchedDataSuccess: (films) => fetchedDataSuccess(films)}, dispatch)
 }
-
-Header.defaultProps = {
-  fetchedDataSuccess: null,
-};
-
-Header.propTypes = {
-  fetchedDataSuccess: PropTypes.func,
-};
 
 export default connect(mapStateToProps, matchDispatchToProps)(Header);

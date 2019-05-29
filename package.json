@@ -11,7 +11,9 @@
     "cypress": "cypress open",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
-    "flow": "flow"
+    "flow": "flow",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -93,7 +95,11 @@
     "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack-dev-middleware": "^3.6.1",
     "webpack-dev-server": "^3.2.1",
-    "webpack-hot-middleware": "^2.24.3"
+    "webpack-hot-middleware": "^2.24.3",
+    "@storybook/react": "^5.0.11",
+    "@storybook/addon-actions": "^5.0.11",
+    "@storybook/addon-links": "^5.0.11",
+    "@storybook/addons": "^5.0.11"
   },
   "jest": {
     "verbose": true,

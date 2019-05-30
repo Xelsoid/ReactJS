@@ -1,11 +1,29 @@
+// @flow
 import React from 'react';
+import injectSheet from 'react-jss';
 
-import './footer.scss';
+type FooterProps = {
+  classes: {
+    footer: {}
+  };
+}
 
-const Footer = () => (
-  <footer className="footer">
-    <span>&copy; All rights reserved</span>
-  </footer>
-);
+const styles = {
+  footer: {
+    backgroundColor: 'black',
+    padding: '20px 10px',
+    color: 'white',
+    textAlign: 'center',
+  }
+};
 
-export default Footer;
+const Footer = (props: FooterProps) => {
+  const {classes} = props;
+  return (
+    <footer className={classes.footer}>
+      <span>&copy; All rights reserved</span>
+    </footer>
+  )
+};
+
+export default injectSheet(styles)(Footer);

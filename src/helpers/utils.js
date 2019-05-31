@@ -1,19 +1,34 @@
 // @flow
-
-export const sortMoviesByRating: Object  = (arr: Array<mixed>, isSortASC: boolean) => {
-  if(isSortASC) {
-    return arr.sort((a: Object,b: Object) => (a.vote_average - b.vote_average))
-  } else {
-    return arr.sort((a: Object,b: Object) => (b.vote_average - a.vote_average))
-  }
-};
-
-export const sortMoviesByDate: Object = (arr: Array<mixed>, isSortASC: boolean) => {
-  if(isSortASC) {
-    return arr.sort((a: Object,b: Object) => (new Date(a.release_date) - new Date(b.release_date)))
-  } else {
-    return arr.sort((a: Object,b: Object) => (new Date(b.release_date) - new Date(a.release_date)))
-  }
-};
+import { createSelector } from 'reselect';
 
 export const removeSpecialSymbols = (string: string): string => {return string.replace(/[^A-Z0-9]/ig, "_")};
+
+const getMovies = (state) => {
+  return state;
+};
+
+const getFlag = (state, flag) => {
+  return flag;
+};
+
+export const sortMoviesByRating = createSelector(
+  [ getMovies, getFlag ],
+  (state, flag) => {
+    if(flag) {
+      return state.sort((a: Object,b: Object) => (a.vote_average - b.vote_average))
+    } else {
+      return state.sort((a: Object,b: Object) => (b.vote_average - a.vote_average))
+    }
+  }
+);
+
+export const sortMoviesByDate = createSelector(
+  [ getMovies, getFlag ],
+  (state, flag) => {
+    if(flag) {
+      return state.sort((a: Object,b: Object) => (new Date(a.release_date) - new Date(b.release_date)))
+    } else {
+      return state.sort((a: Object,b: Object) => (new Date(b.release_date) - new Date(a.release_date)))
+    }
+  }
+);

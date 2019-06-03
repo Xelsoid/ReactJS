@@ -18,7 +18,7 @@ app
       app.render(req, res, actualPage, queryParams)
     });
 
-    server.get('/movies', (req, res) => {
+    server.get('/movies*', (req, res) => {
       const actualPage = '/index';
       const queryParams = { search: req._parsedUrl.search };
       app.render(req, res, actualPage, queryParams)

@@ -1,12 +1,13 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import fetch from 'isomorphic-unfetch';
 
+import {JssProvider} from 'react-jss';
 import {fetchedDataSuccess} from "../src/actions/actions";
 import App from '../src/App';
 import FilmsGallery from '../src/components/filmsGallery/FilmsGallery';
 import SortResults from '../src/components/sortResults/SortResults';
-import DATA from '../src/mockedData/MOCKED_DATA'
+
+import { fetchData } from "../src/helpers/utils";
 
 class Page extends Component {
   static async getInitialProps({store, isServer, pathname, query}) {
@@ -20,15 +21,7 @@ class Page extends Component {
 
     const url = baseUrl + searchPart;
 
-    const res = await fetch(url);
-    let films;
-
-    console.log(res.status);
-    if(res.status !== 200){
-      films = DATA;
-    } else {
-      films = await res.json();
-    }
+    const films = await fetchData(url);
 
     store.dispatch(fetchedDataSuccess(films));
 
@@ -38,10 +31,12 @@ class Page extends Component {
   }
   render() {
     return (
-      <App>
-        <SortResults />
-        <FilmsGallery  />
-      </App>
+      <JssProvider>
+        <App>
+          <SortResults />
+          <FilmsGallery  />
+        </App>
+      </JssProvider>
     )
   }
 }

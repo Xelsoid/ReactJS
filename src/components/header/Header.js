@@ -2,10 +2,9 @@
 
 import React from 'react';
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import Link from 'next/link';
+import { bindActionCreators, compose } from "redux";
 
-import './header.scss';
+import injectSheet from "react-jss";
 import Logo from '../logo/Logo';
 import Search from '../search/Search';
 import Button from '../button/Button';
@@ -13,12 +12,22 @@ import { fetchedDataSuccess } from '../../actions/actions';
 
 type HeaderProps = {
   fetchedDataSuccess: Function;
+  classes: Object;
 }
 
 type State = {
   searchBy: string;
   search: string;
 }
+
+const styles = {
+  header: {
+    width: '100%',
+    padding: '30px',
+    backgroundColor: '#fdc459',
+    boxSizing: 'border-box',
+  }
+};
 
 class Header extends React.Component<HeaderProps, State> {
   constructor(props: HeaderProps) {
@@ -53,23 +62,21 @@ class Header extends React.Component<HeaderProps, State> {
 
   render() {
     const { search } = this.state;
-
+    const { classes } = this.props;
     return (
-      <header className="header">
+      <header className={classes.header}>
         <Logo />
         <Search
           value={search}
           callback={this.collectInputData}
         />
-        <Link as="/movies" href="/">
-          <button
-            className="btn btn--primary"
-            type="button"
-            onClick={this.fetchDataFromServerCallBack}
-          >
-            Search
-          </button>
-        </Link>
+        <button
+          className="btn btn--primary"
+          type="button"
+          onClick={this.fetchDataFromServerCallBack}
+        >
+          Search
+        </button>
         <div>
           <span>Searched by:</span>
           <Button
@@ -102,4 +109,5 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators({fetchedDataSuccess: (films) => fetchedDataSuccess(films)}, dispatch)
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(Header);
+const enhancer = compose(connect(mapStateToProps, matchDispatchToProps), injectSheet(styles));
+export default enhancer(Header);

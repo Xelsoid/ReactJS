@@ -2,7 +2,8 @@
 
 import React from 'react';
 import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
+import {bindActionCreators, compose} from "redux";
+import injectSheet from "react-jss";
 
 import Button from '../button/Button';
 import './sortResults.scss';
@@ -12,12 +13,24 @@ type SortResultsProps = {
   movies: Object;
   sortByDate: Function;
   sortByRating: Function;
+  classes: Object;
 }
 
 type State = {
   sortingByRating: boolean;
   sortingByDate: boolean;
 }
+
+const styles = {
+  mainSorting: {
+    padding: '20px',
+    backgroundColor: 'lightgray',
+  },
+  mainSortingColumn: {
+    display: 'inline-block',
+    width: '49%',
+  }
+};
 
 class SortResults extends React.Component<SortResultsProps, State> {
   constructor(props: SortResultsProps) {
@@ -29,7 +42,7 @@ class SortResults extends React.Component<SortResultsProps, State> {
   }
 
   render() {
-    const {movies, sortByDate, sortByRating} = this.props;
+    const {movies, sortByDate, sortByRating, classes} = this.props;
     const {sortingByRating, sortingByDate} = this.state;
     if(!movies){return null}
 
@@ -44,24 +57,22 @@ class SortResults extends React.Component<SortResultsProps, State> {
     };
 
     return(
-      <div className="main-sorting">
-        <div className="main-sorting__column">
+      <div className={classes.mainSorting}>
+        <div className={classes.mainSortingColumn}>
           <span>{`${movies.length} movies found`}</span>
         </div>
-        <div className="main-sorting__column">
+        <div className={classes.mainSortingColumn}>
           <span>Sort by:</span>
           <Button
             id='btnReleaseDate'
             title='Release Date'
             disabled={false}
-            btnClass='btn--primary'
             callback={sortByDateCallback}
           />
           <Button
             id='btnRating'
             title='Rating'
             disabled={false}
-            btnClass='btn--primary'
             callback={sortByRatingCallback}
           />
         </div>
@@ -79,4 +90,5 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators({sortByDate, sortByRating}, dispatch)
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(SortResults);
+const enhancer = compose(connect(mapStateToProps, matchDispatchToProps), injectSheet(styles));
+export default enhancer(SortResults);

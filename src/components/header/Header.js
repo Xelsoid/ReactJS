@@ -88,10 +88,10 @@ class Header extends React.Component<HeaderProps, State> {
           />
           <Button
             id="btnGenre"
-            title="Genre"
+            title="Genres"
             disabled={false}
             btnClass="btn--primary"
-            callback={() => {this.setState({searchBy: 'genre'})}}
+            callback={() => {this.setState({searchBy: 'genres'})}}
           />
         </div>
       </header>

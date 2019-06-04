@@ -20,4 +20,9 @@ export const sortByRating = (films, isSortedASC) => ({
   payload: {films: films, isSortedASC: isSortedASC},
 });
 
+export const setSortFilter = filter => ({
+  type: ACTIONS.SET_SORT_FILTER,
+  payload: filter,
+});
+
 

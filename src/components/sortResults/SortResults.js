@@ -6,7 +6,11 @@ import {bindActionCreators, compose} from 'redux';
 import injectSheet from 'react-jss';
 
 import Button from '../button/Button';
-import {sortByRating, sortByDate} from '../../actions/actions';
+import {
+  setSortFilter,
+  sortByDate,
+  sortByRating,
+} from '../../actions/actions';
 
 type SortResultsProps = {
   movies: Object;
@@ -41,18 +45,26 @@ class SortResults extends React.Component<SortResultsProps, State> {
   }
 
   render() {
-    const {movies, sortByDate, sortByRating, classes} = this.props;
-    const {sortingByRating, sortingByDate} = this.state;
+    const {
+      classes,
+      movies,
+      setSortFilter,
+      sortByDate,
+      sortByRating,
+    } = this.props;
+    // const {sortingByRating, sortingByDate} = this.state;
     if(!movies){return null}
 
     const sortByDateCallback = () => {
-      this.setState({sortingByDate: !sortingByDate});
-      sortByDate(movies, sortingByDate);
+      setSortFilter('release_date');
+      //this.setState({sortingByDate: !sortingByDate});
+      //sortByDate(movies, sortingByDate);
     };
 
     const sortByRatingCallback = () => {
-      this.setState({sortingByRating: !sortingByRating});
-      sortByRating(movies, sortingByRating);
+      setSortFilter('vote_average');
+      //this.setState({sortingByRating: !sortingByRating});
+      //sortByRating(movies, sortingByRating);
     };
 
     return(
@@ -86,7 +98,7 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({sortByDate, sortByRating}, dispatch)
+  return bindActionCreators({sortByDate, sortByRating, setSortFilter}, dispatch)
 }
 
 const enhancer = compose(connect(mapStateToProps, matchDispatchToProps), injectSheet(styles));

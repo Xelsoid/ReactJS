@@ -8,7 +8,7 @@ import Link from 'next/link';
 import injectSheet from 'react-jss';
 import FilmsGalleryCard from './FilmsGalleryCard';
 import { chooseFilm } from '../../actions/actions';
-import { removeSpecialSymbols } from '../../helpers/utils';
+import { removeSpecialSymbols, sortedFilmsSelector } from '../../helpers/utils';
 
 type FilmsGalleryProps = {
   movies: Object;
@@ -50,11 +50,9 @@ export const FilmsGallery = (props: FilmsGalleryProps) => {
   )
 };
 
-function mapStateToProps(state) {
-  return {
-    movies: state.films
-  };
-}
+const mapStateToProps = state => ({
+  movies: sortedFilmsSelector(state),
+});
 
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({chooseFilm}, dispatch)

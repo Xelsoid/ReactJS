@@ -6,7 +6,6 @@ import {bindActionCreators, compose} from 'redux';
 import injectSheet from 'react-jss';
 
 import Button from '../button/Button';
-import './sortResults.scss';
 import {sortByRating, sortByDate} from '../../actions/actions';
 
 type SortResultsProps = {

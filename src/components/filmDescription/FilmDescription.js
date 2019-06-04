@@ -1,11 +1,11 @@
 // @flow
 
 import React from 'react';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 
-import {compose} from "redux";
-import injectSheet from "react-jss";
-import Button from "../button/Button";
+import {compose} from 'redux';
+import injectSheet from 'react-jss';
+import Button from '../button/Button';
 
 type FilmDescriptionProps = {
   selectedFilm: {
@@ -74,10 +74,10 @@ const FilmDescription = (props: FilmDescriptionProps) => {
         </p>
       </div>
       <Button
-        id='closeDescription'
-        title='Close description'
+        id="closeDescription"
+        title="Close description"
         disabled={false}
-        btnClass='btn--primary'
+        btnClass="btn--primary"
         callback={goBackCallback}
       />
     </div>

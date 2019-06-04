@@ -18,6 +18,8 @@
     "node": true
   },
   "rules": {
+    "quotes": ["error", "single"],
+    "jsx-quotes": ["error", "prefer-double"],
     "sort-keys": "off",
     "react/jsx-fragments": "off",
     "react/jsx-filename-extension": "off",

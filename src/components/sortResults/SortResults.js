@@ -1,9 +1,9 @@
 // @flow
 
 import React from 'react';
-import {connect} from "react-redux";
-import {bindActionCreators, compose} from "redux";
-import injectSheet from "react-jss";
+import {connect} from 'react-redux';
+import {bindActionCreators, compose} from 'redux';
+import injectSheet from 'react-jss';
 
 import Button from '../button/Button';
 import './sortResults.scss';
@@ -64,14 +64,14 @@ class SortResults extends React.Component<SortResultsProps, State> {
         <div className={classes.mainSortingColumn}>
           <span>Sort by:</span>
           <Button
-            id='btnReleaseDate'
-            title='Release Date'
+            id="btnReleaseDate"
+            title="Release Date"
             disabled={false}
             callback={sortByDateCallback}
           />
           <Button
-            id='btnRating'
-            title='Rating'
+            id="btnRating"
+            title="Rating"
             disabled={false}
             callback={sortByRatingCallback}
           />

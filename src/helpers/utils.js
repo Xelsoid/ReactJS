@@ -1,7 +1,7 @@
 // @flow
 import { createSelector } from 'reselect';
 
-export const removeSpecialSymbols = (string: string): string => {return string.replace(/[^A-Z0-9]/ig, "_")};
+export const removeSpecialSymbols = (string: string): string => {return string.replace(/[^A-Z0-9]/ig, '_')};
 
 const getMovies = (state) => {
   return state;

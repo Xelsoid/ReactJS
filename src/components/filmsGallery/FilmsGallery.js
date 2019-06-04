@@ -1,14 +1,14 @@
 // @flow
 
 import React from 'react';
-import { bindActionCreators, compose } from "redux";
-import { connect } from "react-redux";
+import { bindActionCreators, compose } from 'redux';
+import { connect } from 'react-redux';
 import Link from 'next/link';
 
-import injectSheet from "react-jss";
+import injectSheet from 'react-jss';
 import FilmsGalleryCard from './FilmsGalleryCard';
 import { chooseFilm } from '../../actions/actions';
-import { removeSpecialSymbols } from "../../helpers/utils";
+import { removeSpecialSymbols } from '../../helpers/utils';
 
 type FilmsGalleryProps = {
   movies: Object;

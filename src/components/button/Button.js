@@ -3,7 +3,7 @@
 import React from 'react';
 
 import './button.scss';
-import injectSheet from "react-jss";
+import injectSheet from 'react-jss';
 
 type ButtonProps = {
   disabled: boolean;

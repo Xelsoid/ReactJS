@@ -1,10 +1,10 @@
 // @flow
 
 import React from 'react';
-import { connect } from "react-redux";
-import { bindActionCreators, compose } from "redux";
+import { connect } from 'react-redux';
+import { bindActionCreators, compose } from 'redux';
 
-import injectSheet from "react-jss";
+import injectSheet from 'react-jss';
 import Logo from '../logo/Logo';
 import Search from '../search/Search';
 import Button from '../button/Button';
@@ -80,17 +80,17 @@ class Header extends React.Component<HeaderProps, State> {
         <div>
           <span>Searched by:</span>
           <Button
-            id='btnTitle'
-            title='Title'
+            id="btnTitle"
+            title="Title"
             disabled={false}
-            btnClass='btn--primary'
+            btnClass="btn--primary"
             callback={() => {this.setState({searchBy: 'title'})}}
           />
           <Button
-            id='btnGenre'
-            title='Genre'
+            id="btnGenre"
+            title="Genre"
             disabled={false}
-            btnClass='btn--primary'
+            btnClass="btn--primary"
             callback={() => {this.setState({searchBy: 'genre'})}}
           />
         </div>

@@ -26,5 +26,6 @@ export const sortedFilmsSelector = createSelector(
 export const fetchData = (url: string) => {
   return fetch(url)
     .then(response => response.json())
-    .then(films => films);
+    .then(films => films)
+    .catch(() => {window.location.href = 'not-found';})
 };

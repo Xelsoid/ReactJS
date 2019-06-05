@@ -1,13 +1,13 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import {JssProvider} from 'react-jss';
-import {fetchedDataSuccess} from "../src/actions/actions";
+import {fetchedDataSuccess} from '../src/actions/actions';
 import App from '../src/App';
 import FilmsGallery from '../src/components/filmsGallery/FilmsGallery';
 import SortResults from '../src/components/sortResults/SortResults';
 
-import { fetchData } from "../src/helpers/utils";
+import { fetchData } from '../src/helpers/utils';
 
 class Page extends Component {
   static async getInitialProps({store, isServer, pathname, query}) {

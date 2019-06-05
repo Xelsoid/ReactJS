@@ -70,13 +70,11 @@ class Header extends React.Component<HeaderProps, State> {
           value={search}
           callback={this.collectInputData}
         />
-        <button
-          className="btn btn--primary"
+        <Button
           type="button"
-          onClick={this.fetchDataFromServerCallBack}
-        >
-          Search
-        </button>
+          title="Search"
+          callback={this.fetchDataFromServerCallBack}
+        />
         <div>
           <span>Searched by:</span>
           <Button

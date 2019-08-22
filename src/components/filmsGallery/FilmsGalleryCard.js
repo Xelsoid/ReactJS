@@ -1,29 +1,51 @@
+// @flow
+
 import React from 'react';
-import PropTypes from "prop-types";
 
-import './filmsGalleryCard.scss';
+import injectSheet from 'react-jss';
 
-const FilmsGalleryCard = ({film}) => {
+type FilmsGalleryCardProps = {
+  film: {
+    title: string;
+    poster_path: string;
+    release_date: string;
+    genres: Array<string>;
+  },
+  classes: Object;
+};
+
+const styles = {
+  filmGalleryCardImage: {
+    width: '100%',
+    marginBottom: '10px'
+  },
+  filmGalleryCardName: {
+    display: 'inline-block',
+  },
+  filmGalleryCardYear: {
+    display: 'inline-block',
+    float: 'right',
+    border: 'solid grey 1px'
+  },
+  filmGalleryCardGenre: {
+    fontSize: '.75rem'
+  }
+};
+
+const FilmsGalleryCard = (props: FilmsGalleryCardProps) => {
+  const {film, classes} =  props;
   const {title, poster_path, release_date, genres} = film;
 
   return (
-    <div className="film-gallery-card">
-      <img alt={title} className="film-gallery-card__image" src={poster_path} />
+    <div>
+      <img alt={title} className={classes.filmGalleryCardImage} src={poster_path} />
       <div className="clearfix">
-        <span className="film-gallery-card__name">{title}</span>
-        <span className="film-gallery-card__year">{release_date}</span>
+        <span className={classes.filmGalleryCardName}>{title}</span>
+        <span className={classes.filmGalleryCardYear}>{release_date}</span>
       </div>
-      <small className="film-gallery-card__genre">{genres.map(genre => `${genre} `)}</small>
+      <small className={classes.filmGalleryCardGenre}>{genres.map(genre => `${genre} `)}</small>
     </div>
   )
 };
 
-FilmsGalleryCard.defaultProps = {
-  film: null
-};
-
-FilmsGalleryCard.propTypes = {
-  film: PropTypes.instanceOf(Object),
-};
-
-export default FilmsGalleryCard;
+export default injectSheet(styles)(FilmsGalleryCard);

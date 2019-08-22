@@ -1,0 +1,22 @@
+.film-description {
+  padding: 10px 0;
+  background-color: #fdc459; }
+  .film-description__image {
+    max-width: 300px;
+    min-width: 250px; }
+    .film-description__image-wrapper {
+      float: left;
+      margin-right: 40px;
+      margin-left: 20px; }
+  .film-description__header {
+    font-size: 40px;
+    margin-bottom: 10px; }
+  .film-description__useful-info {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px; }
+  .film-description__narration {
+    font-size: 18px;
+    margin-top: 10px; }
+
+/*# sourceMappingURL=filmDescription.css.map */

@@ -5,10 +5,10 @@ describe('Button', () => {
   it('renders correctly', () => {
     const component = shallow(
       <Button
-        id='default'
-        title='Default'
+        id="default"
+        title="Default"
         disabled={false}
-        btnClass='btn--primary'
+        btnClass="btn--primary"
       />
     );
     expect(component).toMatchSnapshot();

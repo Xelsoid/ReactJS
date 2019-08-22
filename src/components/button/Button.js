@@ -1,12 +1,42 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import './button.scss';
+import injectSheet from 'react-jss';
 
-const Button = ({btnClass, disabled, id, title, callback}) => {
+type ButtonProps = {
+  disabled: boolean;
+  id: string;
+  title: string;
+  callback: Function;
+  classes: Object
+}
+
+const styles = {
+  btn: {
+  padding: '10px 20px',
+  margin: '5px',
+  borderRadius: '16px',
+  boxShadow: '4px 4px 14px grey',
+  border: 'solid black 2px',
+  backgroundColor: 'white',
+    '&:hover': {
+      boxShadow: '0 0 20px grey inset'
+    },
+    '&:disabled': {
+      backgroundColor: 'lightgray',
+      '&:hover': {
+        boxShadow: '4px 4px 14px grey'
+      }
+    }
+  },
+};
+
+const Button = (props: ButtonProps) => {
+  const {disabled, id, title, callback, classes} = props;
   return (
     <button
-      className={`btn ${btnClass}`}
+      className={classes.btn}
       id={id}
       disabled={disabled}
       onClick={callback}
@@ -17,20 +47,4 @@ const Button = ({btnClass, disabled, id, title, callback}) => {
   );
 };
 
-Button.defaultProps = {
-  btnClass: 'btn--primary',
-  disabled: true,
-  title: 'disabled',
-  callback: null,
-  id: '',
-};
-
-Button.propTypes = {
-  btnClass: PropTypes.string,
-  disabled: PropTypes.bool,
-  title: PropTypes.string,
-  callback: PropTypes.func,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-};
-
-export default Button;
+export default injectSheet(styles)(Button);

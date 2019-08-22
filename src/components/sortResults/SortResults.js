@@ -1,15 +1,39 @@
-import PropTypes from "prop-types";
+// @flow
+
 import React from 'react';
-import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
+import {connect} from 'react-redux';
+import {bindActionCreators, compose} from 'redux';
+import injectSheet from 'react-jss';
 
 import Button from '../button/Button';
-import './sortResults.scss';
-import {sortByRating, sortByDate} from '../../actions/actions';
+import { setSortFilter } from '../../actions/actions';
 
-class SortResults extends React.Component {
-  constructor() {
-    super();
+type SortResultsProps = {
+  movies: Object;
+  setSortFilter: Function;
+
+  classes: Object;
+}
+
+type State = {
+  sortingByRating: boolean;
+  sortingByDate: boolean;
+}
+
+const styles = {
+  mainSorting: {
+    padding: '20px',
+    backgroundColor: 'lightgray',
+  },
+  mainSortingColumn: {
+    display: 'inline-block',
+    width: '49%',
+  }
+};
+
+class SortResults extends React.Component<SortResultsProps, State> {
+  constructor(props: SortResultsProps) {
+    super(props);
     this.state = {
       sortingByRating: true,
       sortingByDate: true,
@@ -17,39 +41,39 @@ class SortResults extends React.Component {
   }
 
   render() {
-    const {movies, sortByDate, sortByRating} = this.props;
+    const {classes, movies, setSortFilter} = this.props;
     const {sortingByRating, sortingByDate} = this.state;
     if(!movies){return null}
 
     const sortByDateCallback = () => {
       this.setState({sortingByDate: !sortingByDate});
-      sortByDate(movies, sortingByDate);
+      const sortOrder = sortingByDate ? 'asc' : 'desc';
+      setSortFilter('release_date', sortOrder);
     };
 
     const sortByRatingCallback = () => {
       this.setState({sortingByRating: !sortingByRating});
-      sortByRating(movies, sortingByRating);
+      const sortOrder = sortingByRating ? 'asc' : 'desc';
+      setSortFilter('vote_average', sortOrder);
     };
 
     return(
-      <div className="main-sorting">
-        <div className="main-sorting__column">
+      <div className={classes.mainSorting}>
+        <div className={classes.mainSortingColumn}>
           <span>{`${movies.length} movies found`}</span>
         </div>
-        <div className="main-sorting__column">
+        <div className={classes.mainSortingColumn}>
           <span>Sort by:</span>
           <Button
-            id='btnReleaseDate'
-            title='Release Date'
+            id="btnReleaseDate"
+            title="Release Date"
             disabled={false}
-            btnClass='btn--primary'
             callback={sortByDateCallback}
           />
           <Button
-            id='btnRating'
-            title='Rating'
+            id="btnRating"
+            title="Rating"
             disabled={false}
-            btnClass='btn--primary'
             callback={sortByRatingCallback}
           />
         </div>
@@ -64,19 +88,8 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({sortByDate, sortByRating}, dispatch)
+  return bindActionCreators({setSortFilter}, dispatch)
 }
 
-SortResults.defaultProps = {
-  movies: {},
-  sortByDate: null,
-  sortByRating: null,
-};
-
-SortResults.propTypes = {
-  movies: PropTypes.instanceOf(Object),
-  sortByDate: PropTypes.func,
-  sortByRating: PropTypes.func,
-};
-
-export default connect(mapStateToProps, matchDispatchToProps)(SortResults);
+const enhancer = compose(connect(mapStateToProps, matchDispatchToProps), injectSheet(styles));
+export default enhancer(SortResults);

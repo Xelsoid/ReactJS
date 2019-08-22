@@ -1,4 +1,4 @@
-import { chooseFilm, fetchedDataSuccess, sortByDate, sortByRating } from './actions';
+import { chooseFilm, fetchedDataSuccess } from './actions';
 import { ACTIONS } from '../helpers/constants';
 import DATA from '../mockedData/MOCKED_DATA'
 

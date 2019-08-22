@@ -1,18 +1,37 @@
-import PropTypes from "prop-types";
-import React from 'react';
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import Link from 'next/link';
+// @flow
 
-import './header.scss';
+import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators, compose } from 'redux';
+
+import injectSheet from 'react-jss';
 import Logo from '../logo/Logo';
 import Search from '../search/Search';
 import Button from '../button/Button';
 import { fetchedDataSuccess } from '../../actions/actions';
 
-class Header extends React.Component {
-  constructor(props) {
-    super();
+type HeaderProps = {
+  fetchedDataSuccess: Function;
+  classes: Object;
+}
+
+type State = {
+  searchBy: string;
+  search: string;
+}
+
+const styles = {
+  header: {
+    width: '100%',
+    padding: '30px',
+    backgroundColor: '#fdc459',
+    boxSizing: 'border-box',
+  }
+};
+
+class Header extends React.Component<HeaderProps, State> {
+  constructor(props: HeaderProps) {
+    super(props);
     this.props = props;
     this.state = {
       searchBy: 'title',
@@ -43,38 +62,34 @@ class Header extends React.Component {
 
   render() {
     const { search } = this.state;
-
+    const { classes } = this.props;
     return (
-      <header className="header">
+      <header className={classes.header}>
         <Logo />
         <Search
           value={search}
           callback={this.collectInputData}
         />
-        <Link as="/movies" href="/">
-          <button
-            className="btn btn--primary"
-            type="button"
-            onClick={this.fetchDataFromServerCallBack}
-          >
-            Search
-          </button>
-        </Link>
+        <Button
+          type="button"
+          title="Search"
+          callback={this.fetchDataFromServerCallBack}
+        />
         <div>
           <span>Searched by:</span>
           <Button
-            id='btnTitle'
-            title='Title'
+            id="btnTitle"
+            title="Title"
             disabled={false}
-            btnClass='btn--primary'
+            btnClass="btn--primary"
             callback={() => {this.setState({searchBy: 'title'})}}
           />
           <Button
-            id='btnGenre'
-            title='Genre'
+            id="btnGenre"
+            title="Genres"
             disabled={false}
-            btnClass='btn--primary'
-            callback={() => {this.setState({searchBy: 'genre'})}}
+            btnClass="btn--primary"
+            callback={() => {this.setState({searchBy: 'genres'})}}
           />
         </div>
       </header>
@@ -92,12 +107,5 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators({fetchedDataSuccess: (films) => fetchedDataSuccess(films)}, dispatch)
 }
 
-Header.defaultProps = {
-  fetchedDataSuccess: null,
-};
-
-Header.propTypes = {
-  fetchedDataSuccess: PropTypes.func,
-};
-
-export default connect(mapStateToProps, matchDispatchToProps)(Header);
+const enhancer = compose(connect(mapStateToProps, matchDispatchToProps), injectSheet(styles));
+export default enhancer(Header);

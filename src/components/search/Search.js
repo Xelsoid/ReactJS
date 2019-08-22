@@ -1,16 +1,50 @@
+// @flow
 import React from 'react';
 
-import './search.scss';
-import PropTypes from "prop-types";
+import injectSheet from 'react-jss';
 
-const Search = ({callback, value}) => {
+type SearchProps = {
+  callback: Function;
+  value: string;
+  classes: Object;
+};
+
+const styles = {
+  searchBoxWrapper: {
+    display: 'inline-block',
+    backgroundColor: 'white',
+    boxShadow: '4px 4px 14px grey',
+    borderRadius: '16px',
+    border: 'solid black 2px',
+    '&:hover, &:focus': {
+      boxShadow: '0 0 20px grey inset'
+    }
+  },
+  searchBoxSearchLabel: {
+    display: 'inline-block',
+    padding: '10px',
+  },
+  searchBoxSearchIcon: {
+    '&:hover, &:focus': {
+      transform: 'scale(1.1)',
+    }
+  },
+  searchBoxSearchInput: {
+    padding: '10px',
+    border: 'none',
+    backgroundColor: 'transparent',
+  }
+};
+
+const Search = (props: SearchProps) => {
+  const {callback, value, classes} = props;
   return (
-    <div className="search-box__wrapper">
-      <label className="search-box__search-label" htmlFor="searchFilm">
-        <i aria-hidden="true" className="search-box__search-icon fa fa-search" />
+    <div className={classes.searchBoxWrapper}>
+      <label className={classes.searchBoxSearchLabel} htmlFor="searchFilm">
+        <i aria-hidden="true" className={`${classes.searchBoxSearchIcon} fa fa-search`} />
       </label>
       <input
-        className="search-box__search-input"
+        className={classes.searchBoxSearchInput}
         id="searchFilm"
         placeholder="search"
         type="search"
@@ -21,14 +55,4 @@ const Search = ({callback, value}) => {
   );
 };
 
-Search.defaultProps = {
-  callback: null,
-  value: ''
-};
-
-Search.propTypes = {
-  callback: PropTypes.func,
-  value: PropTypes.string
-};
-
-export default Search;
+export default injectSheet(styles)(Search);

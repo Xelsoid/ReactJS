@@ -1,10 +1,13 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import fetch from 'isomorphic-unfetch';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
-import {fetchedDataSuccess} from "../src/actions/actions";
+import {JssProvider} from 'react-jss';
+import {fetchedDataSuccess} from '../src/actions/actions';
 import App from '../src/App';
-import FilmsGallery from '../src/components/filmsGallery/FilmsGallery'
+import FilmsGallery from '../src/components/filmsGallery/FilmsGallery';
+import SortResults from '../src/components/sortResults/SortResults';
+
+import { fetchData } from '../src/helpers/utils';
 
 class Page extends Component {
   static async getInitialProps({store, isServer, pathname, query}) {
@@ -18,8 +21,7 @@ class Page extends Component {
 
     const url = baseUrl + searchPart;
 
-    const res = await fetch(url);
-    const films = await res.json();
+    const films = await fetchData(url);
 
     store.dispatch(fetchedDataSuccess(films));
 
@@ -29,9 +31,12 @@ class Page extends Component {
   }
   render() {
     return (
-      <App>
-        <FilmsGallery  />
-      </App>
+      <JssProvider>
+        <App>
+          <SortResults />
+          <FilmsGallery  />
+        </App>
+      </JssProvider>
     )
   }
 }

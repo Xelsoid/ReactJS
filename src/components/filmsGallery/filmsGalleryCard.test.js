@@ -1,6 +1,6 @@
 import React from 'react';
 import FilmsGalleryCard from './FilmsGalleryCard';
-import DATA from "../../mockedData/MOCKED_DATA";
+import DATA from '../../mockedData/MOCKED_DATA';
 
 const film = DATA.data[1];
 

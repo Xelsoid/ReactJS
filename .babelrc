@@ -6,7 +6,8 @@
         "preset-env": {
           "modules": "commonjs"
         }
-      }
+      },
+      "flow"
     ],
     "@babel/preset-flow",
     "@babel/preset-env",

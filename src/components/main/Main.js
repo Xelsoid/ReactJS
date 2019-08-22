@@ -1,21 +1,18 @@
-import React from 'react';
-import PropTypes from "prop-types";
+// @flow;
 
-const Main = (props) => {
+import React from 'react';
+
+type MainProps = {
+  children: Object;
+};
+
+const Main = (props: MainProps) => {
   const {children} = props;
   return(
     <main>
       {children}
     </main>
   )
-};
-
-Main.defaultProps = {
-  children: null,
-};
-
-Main.propTypes = {
-  children: PropTypes.instanceOf(Object),
 };
 
 export default Main;

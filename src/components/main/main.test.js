@@ -1,6 +1,6 @@
 import React from 'react';
 import Main from './Main';
-import DATA from "../../mockedData/MOCKED_DATA";
+import DATA from '../../mockedData/MOCKED_DATA';
 
 const requestedFilms = DATA;
 
